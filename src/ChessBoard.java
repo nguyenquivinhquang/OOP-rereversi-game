@@ -12,10 +12,10 @@ public class ChessBoard {
     private JFrame mainFrame;
 
     public int row = 8, column = 8;
-    public int[][] move = new int[row][column];
-    public int[][] posibleMove = new int[row][column];
+    public int[][] move = new int[row + 2][column + 2];
+    public int[][] posibleMove = new int[row + 2][column + 2];
 
-    private int player = 0, p1Score = 0, p2Score = 0; // 0: player 1, 1: player 2.
+    private int player = 1, p1Score = 0, p2Score = 0; // 0: player 1, 1: player 2.
 
     public ChessBoard() {
         prepareGUI();
@@ -27,9 +27,9 @@ public class ChessBoard {
 
     public JButton b[][] = new JButton[column + 2][row + 2];
 
-    Icon icon1 = new ImageIcon("D:\\java\\MyCode\\src\\Image\\cross.gif");
-    Icon icon2 = new ImageIcon("D:\\java\\MyCode\\src\\Image\\nought.gif");
-    Icon iconPosibleMove = new ImageIcon("D:\\java\\Reversi\\src\\Image\\a.jpg");
+    Icon icon1 = new ImageIcon("/mnt/CODE/java/OOP-rereversi-game/src/Image/cross.gif");
+    Icon icon2 = new ImageIcon("/mnt/CODE/java/OOP-rereversi-game/src/Image/nought.gif");
+    Icon iconPosibleMove = new ImageIcon("/mnt/CODE/java/OOP-rereversi-game/src/Image/a.jpg");
 
     private JPanel scoreMenu = new JPanel();
     private JPanel panecenter = new JPanel();
@@ -40,6 +40,7 @@ public class ChessBoard {
     public void prepareGUI() {
         for (int i = 0; i < 8; i++)
             Arrays.fill(move[i], -1);
+
         mainFrame = new JFrame("ChessBoard");
         mainFrame.setSize(800, 800);
 
@@ -51,8 +52,8 @@ public class ChessBoard {
 
         panecenter.setLayout(new GridLayout(8, 8));
         mainFrame.add(panecenter, BorderLayout.WEST);
-        for (int i = 0; i < column; i++)
-            for (int j = 0; j < row; j++) {
+        for (int i = 1; i <= column; i++)
+            for (int j = 1; j <= row; j++) {
                 b[i][j] = new JButton();
                 b[i][j].setActionCommand(i + " " + j);
                 b[i][j].setBackground(Color.gray);
@@ -70,13 +71,13 @@ public class ChessBoard {
 
         mainFrame.add(scoreMenu);
         panecenter.setSize(900, 900);
-        System.out.println("hihi");
+        //System.out.println("hihi");
         mainFrame.setVisible(true);
     }
 
     public void actionPerformed(ActionEvent e) {
         String s = e.getActionCommand();
-        System.out.println(s);
+
         int k = s.indexOf(32);
         int i = Integer.parseInt(s.substring(0, k));
         int j = Integer.parseInt(s.substring(k + 1, s.length()));
@@ -88,24 +89,25 @@ public class ChessBoard {
 
         move[i][j] = player;
 
-        p1Score  = GamePlay.CountPlayer1Score(move);
-        p2Score  = GamePlay.CountPlayer2Score(move);
-        player1Score.setText("Player 1 score: "+ p1Score);
-        player2Score.setText("Player 2 score: "+ p2Score);
-
+        p1Score = GamePlay.CountPlayerScore(move, 1);
+        p2Score = GamePlay.CountPlayerScore(move, 2);
+        player1Score.setText("Player 1 score: " + p1Score);
+        player2Score.setText("Player 2 score: " + p2Score);
+        int nextMove;
+        if (player == 1)
+            player = 2;
+        else player = 1;
         posibleMove = GamePlay.CheckPosibleMove(move, player);
-        player = (player + 1) % 2;
-//        /DrawPosibleMove();
+        DrawPosibleMove();
     }
 
     public void DrawPosibleMove() {
         System.out.println("Running ....");
-        for (int i = 0; i < 8; i++)
-            for (int j = 0; j < 8; j++) {
-                if (posibleMove[i][j] != -1) {
-                    //b[i][j].setIcon(iconPosibleMove);
+        for (int i = 1; i <= 8; i++)
+            for (int j = 1; j <= 8; j++) {
+                if (posibleMove[i][j] == 1) {
+                    b[i][j].setIcon(iconPosibleMove);
                     panecenter.add(b[i][j]);
-                    System.out.println("running");
                 }
             }
     }
