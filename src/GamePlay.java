@@ -5,9 +5,10 @@ class cond {
 }
 
 public class GamePlay {
-    public static int row = 8, column = 8;
+    private static final int row = 8;
+    private static final int column = 8;
 
-    public static int[][] CheckPosibleMove(int[][] check, int player) { // 1: player 1 just moved, 2 player 2 just moved. 
+    public static int[][] CheckPosibleMove(int[][] check, int player) { // 1: player 1 just moved, 2 player 2 just moved.
         int[][] posible = new int[row + 2][column + 2];
         cond[][] arr = new cond[row + 2][column + 2];
         int prev;
@@ -88,15 +89,12 @@ public class GamePlay {
         return pScore;
     }
 
+    public int[][] flipChess(int[][] check, int player, int x, int y) { //{x,y} current move
+        int[][] eat = new int[row + 2][column + 2];
+
+        return eat;
+    }
 
 }
 
-// public static void main(String[] args) {
-// int[][] arr = new int[8][8];
-// //InputFile();
-// for (int i = 0; i < 8; i++)
-// for (int j = 0; j < 8; j++)
-// arr[i][j] = 13 + i + j;
-// //CheckPosibleMove(arr);
-// }
 
