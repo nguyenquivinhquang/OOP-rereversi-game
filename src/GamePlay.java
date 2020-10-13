@@ -89,9 +89,29 @@ public class GamePlay {
         return pScore;
     }
 
-    public int[][] flipChess(int[][] check, int player, int x, int y) { //{x,y} current move
-        int[][] eat = new int[row + 2][column + 2];
+    private static boolean goFind(int[][] eat, int[][] check, int player, int i, int j, int u, int v) {
+        if (i == 0 || i == row || j == 0 || j == column || check[i][j] == -1)
+            return false;
+        if (check[i][j] != player)
+            return true;
+        i += u;
+        j += v;
+        boolean flag = goFind(eat, check, player, i, j, u, v);
+        if (flag)
+            check[i][j] = player;
+        return flag;
+    }
 
+    public static int[][] flipChess(int[][] check, int player, int x, int y) { //{x,y} current position, player: current player
+        int[][] eat = new int[row + 2][column + 2];
+        goFind(eat, check, player, x, y, -1, 0);
+        goFind(eat, check, player, x, y, -1, -1);
+        goFind(eat, check, player, x, y, -1, 1);
+        goFind(eat, check, player, x, y, 0, -1);
+        goFind(eat, check, player, x, y, 0, 1);
+        goFind(eat, check, player, x, y, 1, -1);
+        goFind(eat, check, player, x, y, 1, 0);
+        goFind(eat, check, player, x, y, 1, 1);
         return eat;
     }
 

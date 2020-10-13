@@ -7,13 +7,18 @@ public class ConsoleGui {
     int column = 8, row = 8, step = 0;
     int[][] fee = new int[row + 2][column + 2];
     int[][] posibleMove = new int[row + 2][column + 2];
+    int x, y;
 
     private void resetArray() {
         for (int i = 0; i <= row; i++)
             for (int j = 0; j <= column; j++) {
                 fee[i][j] = -1;
-                draw[i][j] = '*';
+                draw[i][j] = '.';
             }
+        fee[4][4] = 1;
+        fee[4][5] = 2;
+        fee[5][4] = 2;
+        fee[5][5] = 1;
     }
 
     public void press() {
@@ -28,26 +33,31 @@ public class ConsoleGui {
             else fee[x][y] = step;
         }
         //myObj.close();
-        if (step == 1) {
-            draw[x][y] = player1;
+        this.x = x;
+        this.y = y;
+        if (step == 1)
             step = 2;
-        } else {
-            draw[x][y] = player2;
-            step = 1;
-        }
+        else step = 1;
+    }
+
+    private void setArrToPrint() {
+        for (int i = 1; i <= row; i++)
+            for (int j = 1; j <= column; j++)
+                if (fee[x][y] != -1) {
+                    draw[x][y] = fee[x][y] == 1 ? player1 : player2;
+                } else if (posibleMove[i][j] == 1) draw[i][j] = possible;
     }
 
     private void display() {
+        setArrToPrint();
         for (int i = 1; i <= row; i++) {
             for (int j = 1; j <= column; j++) {
-                if (posibleMove[i][j] == 1)
-                    System.out.print(possible);
-                else
-                    System.out.print(draw[i][j]);
+                System.out.print(draw[i][j]);
             }
             System.out.println();
         }
     }
+
 
     public void actionGame() {
         resetArray();
@@ -55,6 +65,8 @@ public class ConsoleGui {
             posibleMove = GamePlay.CheckPosibleMove(fee, step);
             display();
             press();
+            int[][] eat = new int[row + 2][column + 2];
+            eat = GamePlay.flipChess(fee, step, x, y);
         }
 
     }
