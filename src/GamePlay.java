@@ -94,24 +94,26 @@ public class GamePlay {
             return false;
         if (check[i][j] != player)
             return true;
-        i += u;
-        j += v;
-        boolean flag = goFind(eat, check, player, i, j, u, v);
-        if (flag)
-            check[i][j] = player;
+//        i += u;
+//        j += v;
+        boolean flag = goFind(eat, check, player, i + u, j + v, u, v);
+        if (flag) {
+            check[i][j] = player == 1 ? 2 : 1;
+        }
         return flag;
     }
 
     public static int[][] flipChess(int[][] check, int player, int x, int y) { //{x,y} current position, player: current player
+        //player = player == 1 ? 2 : 1;
         int[][] eat = new int[row + 2][column + 2];
-        goFind(eat, check, player, x, y, -1, 0);
-        goFind(eat, check, player, x, y, -1, -1);
-        goFind(eat, check, player, x, y, -1, 1);
-        goFind(eat, check, player, x, y, 0, -1);
-        goFind(eat, check, player, x, y, 0, 1);
-        goFind(eat, check, player, x, y, 1, -1);
-        goFind(eat, check, player, x, y, 1, 0);
-        goFind(eat, check, player, x, y, 1, 1);
+        goFind(eat, check, player, x + -1, y, -1, 0);
+        goFind(eat, check, player, x - 1, y + -1, -1, -1);
+        goFind(eat, check, player, x - 1, y + 1, -1, 1);
+        goFind(eat, check, player, x, y - 1, 0, -1);
+        goFind(eat, check, player, x, y + 1, 0, 1);
+        goFind(eat, check, player, x + 1, y - 1, 1, -1);
+        goFind(eat, check, player, x + 1, y, 1, 0);
+        goFind(eat, check, player, x + 1, y + 1, 1, 1);
         return eat;
     }
 

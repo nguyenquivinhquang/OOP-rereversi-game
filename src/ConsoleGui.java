@@ -4,7 +4,7 @@ public class ConsoleGui {
     char player1 = 'X', player2 = 'O', possible = 'i';
     private final String Quyen = "Cute";
     char[][] draw = new char[9][9];
-    int column = 8, row = 8, step = 0;
+    int column = 8, row = 8, step = 1;
     int[][] fee = new int[row + 2][column + 2];
     int[][] posibleMove = new int[row + 2][column + 2];
     int x, y;
@@ -42,17 +42,24 @@ public class ConsoleGui {
 
     private void setArrToPrint() {
         for (int i = 1; i <= row; i++)
-            for (int j = 1; j <= column; j++)
-                if (fee[x][y] != -1) {
-                    draw[x][y] = fee[x][y] == 1 ? player1 : player2;
+            for (int j = 1; j <= column; j++) {
+                draw[i][j] = '.';
+                if (fee[i][j] != -1) {
+                    draw[i][j] = fee[i][j] == 1 ? player1 : player2;
                 } else if (posibleMove[i][j] == 1) draw[i][j] = possible;
+            }
     }
 
     private void display() {
         setArrToPrint();
+        System.out.print("  ");
+        for (int i = 1; i <= column; i++)
+            System.out.print(i + " ");
+        System.out.println();
         for (int i = 1; i <= row; i++) {
+            System.out.print(i + " ");
             for (int j = 1; j <= column; j++) {
-                System.out.print(draw[i][j]);
+                System.out.print(draw[i][j] + " ");
             }
             System.out.println();
         }
