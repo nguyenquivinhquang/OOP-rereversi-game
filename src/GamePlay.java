@@ -71,11 +71,11 @@ public class GamePlay {
                     posible[i][j] = 1;
             }
         // debug
-        for (int i = 1; i <= row; i++) {
-            for (int j = 1; j <= column; j++)
-                System.out.print(posible[i][j] + " ");
-            System.out.println();
-        }
+//        for (int i = 1; i <= row; i++) {
+//            for (int j = 1; j <= column; j++)
+//                System.out.print(posible[i][j] + " ");
+//            System.out.println();
+//        }
         System.out.println("-------------------------------------");
         return posible;
     }
