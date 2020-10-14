@@ -28,9 +28,12 @@ public class ConsoleGui {
         while (fee[x][y] == -1) {
             x = myObj.nextInt();
             y = myObj.nextInt();
-            if (fee[x][y] != -1)
-                System.out.println("This move already had, press again: ");
-            else fee[x][y] = step;
+            int cond = checkCanmove(x, y);
+            if (cond != 0) {
+                if (cond == 1)
+                    System.out.println("This move already had, press again: ");
+                else System.out.println("This is not a valid move, press again: ");
+            } else fee[x][y] = step;
         }
         //myObj.close();
         this.x = x;
@@ -38,6 +41,14 @@ public class ConsoleGui {
         if (step == 1)
             step = 2;
         else step = 1;
+    }
+
+    public int checkCanmove(int x, int y) {
+        if (fee[x][y] != -1)
+            return 1;
+        if (posibleMove[x][y] != 1)
+            return 2;
+        return 0;
     }
 
     private void setArrToPrint() {
@@ -72,8 +83,7 @@ public class ConsoleGui {
             posibleMove = GamePlay.CheckPosibleMove(fee, step);
             display();
             press();
-            int[][] eat = new int[row + 2][column + 2];
-            eat = GamePlay.flipChess(fee, step, x, y);
+            GamePlay.flipChess(fee, step, x, y);
         }
 
     }
