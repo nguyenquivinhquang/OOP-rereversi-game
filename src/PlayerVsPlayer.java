@@ -57,14 +57,25 @@ public class PlayerVsPlayer {
 
     }
 
+    private void noMoves() {
+        String name1 = "Player 1", name2 = "Player 2";
+        if (step == 2) {
+            name1 = "Player 2";
+            name2 = "Player 1";
+        }
+        System.out.println(name1 + "has no move, " + name2 + "'s turn ");
+    }
+
     public void actionGame() {
         resetArray();
         while (Quyen.equals("Cute")) {
             posibleMove = GamePlay.checkPosibleMove(fee, step);
-            computeBoard();
-            graphic.display(board);
-            press();
-            GamePlay.flipChess(fee, step, x, y);
+            if (GamePlay.arrPosibleMove.size() != 0) {
+                computeBoard();
+                graphic.display(board);
+                press();
+                GamePlay.flipChess(fee, step, x, y);
+            } else noMoves();
         }
     }
 

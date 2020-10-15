@@ -1,6 +1,7 @@
 public class DebugArr {
     public static  int row = 8, column = 8;
 
+
     public static  void debug(int[][] arr, String content) {
         System.out.println(content + "\n");
         for (int i = 1; i <= row; i++) {

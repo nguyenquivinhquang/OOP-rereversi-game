@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 class cond {
     // leftDiagnoal : (1,1) -> (8,8), rightDiagonal (1,8) -> (8,1)
     public int leftDiagonal = -1, rigthDiagonal = -1, horizontal = -1, vertical = -1;
@@ -7,6 +9,7 @@ class cond {
 public class GamePlay {
     private static final int row = 8;
     private static final int column = 8;
+    public static ArrayList<cond> arrPosibleMove = new ArrayList<cond>();
 
     public static int[][] checkPosibleMove(int[][] check, int player) { // 1: player 1 just moved, 2 player 2 just moved.
         int[][] posible = new int[row + 2][column + 2];
@@ -70,12 +73,16 @@ public class GamePlay {
                 if (check[i][j] == -1 && arr[i + 1][j - 1].rigthDiagonal == player && check[i + 1][j - 1] == prev)
                     posible[i][j] = 1;
             }
-        // debug
-//        for (int i = 1; i <= row; i++) {
-//            for (int j = 1; j <= column; j++)
-//                System.out.print(posible[i][j] + " ");
-//            System.out.println();
-//        }
+
+        for (int i = 1; i <= row; i++) {
+            for (int j = 1; j <= column; j++)
+                if (posible[i][j] == 1) {
+                    cond temp = new cond();
+                    temp.x = i;
+                    temp.y = j;
+                    arrPosibleMove.add(temp);
+                }
+        }
         System.out.println("-------------------------------------");
         return posible;
     }
