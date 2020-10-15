@@ -75,7 +75,7 @@ public class ChessBoard {
         mainFrame.setVisible(true);
     }
 
-    public void actionPerformed(ActionEvent e) {
+    private void actionPerformed(ActionEvent e) {
         String s = e.getActionCommand();
 
         int k = s.indexOf(32);
@@ -97,7 +97,7 @@ public class ChessBoard {
         if (player == 1)
             player = 2;
         else player = 1;
-        posibleMove = GamePlay.CheckPosibleMove(move, player);
+        posibleMove = GamePlay.checkPosibleMove(move, player);
         DrawPosibleMove();
     }
 

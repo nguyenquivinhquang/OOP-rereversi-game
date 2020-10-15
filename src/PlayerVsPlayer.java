@@ -1,26 +1,70 @@
-import java.util.Scanner;
 
 public class PlayerVsPlayer {
-    char player1 = 'X', player2 = 'O', possible = 'i';
-    private final String Quyen = "Cute";
-    char[][] draw = new char[9][9];
+    private String Quyen = "Cute";
     int column = 8, row = 8, step = 1;
-    int[][] fee = new int[row + 2][column + 2];
+    private int[][] fee = new int[row + 2][column + 2];
     int[][] posibleMove = new int[row + 2][column + 2];
+    int[][] board = new int[row + 2][column + 2];
     int x, y;
+    public ConsoleGui graphic = ConsoleGui.getInstance();
+
+    public PlayerVsPlayer() {
+
+    }
 
     private void resetArray() {
         for (int i = 0; i <= row; i++)
-            for (int j = 0; j <= column; j++) {
+            for (int j = 0; j <= column; j++)
                 fee[i][j] = -1;
-                draw[i][j] = '.';
-            }
+
         fee[4][4] = 1;
         fee[4][5] = 2;
         fee[5][4] = 2;
         fee[5][5] = 1;
     }
 
+    private int checkCanMove(int x, int y) {
+        if (fee[x][y] != -1)
+            return 1;
+        if (posibleMove[x][y] != 1)
+            return 2;
+        return 0;
+    }
+
+    public void press() {
+        int x = 0, y = 0;
+        while (fee[x][y] == -1) {
+            graphic.getXY(x, y);
+            int check = checkCanMove(x, y);
+            if (check != 0)
+                graphic.warning(check);
+            else fee[x][y] = step;
+        }
+        this.x = x;
+        this.y = y;
+        step = step == 1 ? 2 : 1;
+    }
+
+    private void computeBoard() {
+        for (int i = 1; i <= row; i++)
+            for (int j = 1; j <= column; j++) {
+                board[i][j] = -1;
+                board[i][j] = fee[i][j];
+                if (fee[i][j] == -1 && posibleMove[i][j] == 1) board[i][j] = 3;
+            }
+
+    }
+
+    public void actionGame() {
+        resetArray();
+        while (Quyen.equals("Cute")) {
+            posibleMove = GamePlay.checkPosibleMove(fee, step);
+            computeBoard();
+            graphic.display(board);
+            press();
+            GamePlay.flipChess(fee, step, x, y);
+        }
+    }
 
     public static PlayerVsPlayer getInstance() {
         return new PlayerVsPlayer();
