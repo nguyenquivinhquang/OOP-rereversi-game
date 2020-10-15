@@ -34,7 +34,9 @@ public class PlayerVsPlayer {
     public void press() {
         int x = 0, y = 0;
         while (fee[x][y] == -1) {
-            graphic.getXY(x, y);
+            cond temp = graphic.getXY();
+            x = temp.x;
+            y = temp.y;
             int check = checkCanMove(x, y);
             if (check != 0)
                 graphic.warning(check);

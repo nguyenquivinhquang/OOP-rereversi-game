@@ -6,11 +6,13 @@ public class ConsoleGui {
     char[][] draw = new char[9][9];
     private int column = 8, row = 8;
 
-    public void getXY(int x, int y) {
+    public cond getXY() {
         Scanner myObj = new Scanner(System.in);
         System.out.println("Press x,y to move: ");
-        x = myObj.nextInt();
-        y = myObj.nextInt();
+        cond temp = new cond();
+        temp.x = myObj.nextInt();
+        temp.y = myObj.nextInt();
+        return temp;
     }
 
     public void warning(int cond) {
