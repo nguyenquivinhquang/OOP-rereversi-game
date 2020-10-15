@@ -16,7 +16,7 @@ Menu:
     
  GUI:
  
-    + display(int[][]): này sẽ nhận mảng gồm: 1: là nước của player1, 2 là player2, 3 là nước gợi ý, 0 là ô chưa đi; 
+    + display(int[][]): này sẽ nhận mảng gồm: 1: là nước của player1, 2 là player2, 3 là nước gợi ý, -1 là ô chưa đi; 
     
     + warning(int check): check = 1: in ra "This move already had, chose again: " , check = 2, in ra "This is not a valid move, chose again: "
     
