@@ -1,7 +1,8 @@
 ﻿# OOP-rereversi-game
 Menu:
   Trong menu sẽ có các method(function) cơ bản sau:
-    + Display 
+    
+    + Display: ở đây sẽ xuất các jbuton, jframe etc
     
     + PlayervsPlayer: trong đây gọi PlayervsPlayer.getInstance();
     
