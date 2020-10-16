@@ -9,7 +9,7 @@ class cond {
 public class GamePlay {
     private final int row = 8;
     private final int column = 8;
-    public ArrayList<cond> arrPosibleMove = new ArrayList<cond>();
+    public ArrayList<cond> arrPosibleMove = new ArrayList<>();
 
     public int[][] checkPosibleMove(int[][] check, int player) { // 1: player 1 just moved, 2 player 2 just moved.
         int[][] posible = new int[row + 2][column + 2];
@@ -112,7 +112,6 @@ public class GamePlay {
 
     public void flipChess(int[][] check, int player, int x, int y) { //{x,y} current position, player: current player
         //player = player == 1 ? 2 : 1;
-        int[][] eat = new int[row + 2][column + 2];
         goFind(check, player, x + -1, y, -1, 0);
         goFind(check, player, x - 1, y + -1, -1, -1);
         goFind(check, player, x - 1, y + 1, -1, 1);
@@ -126,11 +125,9 @@ public class GamePlay {
     public boolean checkEndGame(int[][] board) {
         int count = 0;
         for (int i = 1; i <= row; i++)
-            for (int j = 1; j <= count; j++)
+            for (int j = 1; j <= column; j++)
                 count += board[i][j] == -1 ? 1 : 0;
-        if (count == 64)
-            return true;
-        return false;
+        return count == 64;
     }
 
     public static GamePlay getInstance() {

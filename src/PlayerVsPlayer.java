@@ -2,18 +2,14 @@
 public class PlayerVsPlayer {
     private String Quyen = "Cute";
     int column = 8, row = 8, step = 1;
-    private int[][] fee = new int[row + 2][column + 2];
+    public int[][] fee = new int[row + 2][column + 2];
     int[][] posibleMove = new int[row + 2][column + 2];
     int[][] board = new int[row + 2][column + 2];
     int x, y;
     public ConsoleGui graphic = ConsoleGui.getInstance();
     GamePlay gamePlay = GamePlay.getInstance();
 
-    public PlayerVsPlayer() {
-
-    }
-
-    private void resetArray() {
+    public void resetArray() {
         for (int i = 0; i <= row; i++)
             for (int j = 0; j <= column; j++)
                 fee[i][j] = -1;
@@ -24,7 +20,7 @@ public class PlayerVsPlayer {
         fee[5][5] = 1;
     }
 
-    private int checkCanMove(int x, int y) {
+    public int checkCanMove(int x, int y) {
         if (fee[x][y] != -1)
             return 1;
         if (posibleMove[x][y] != 1)
@@ -48,7 +44,7 @@ public class PlayerVsPlayer {
         step = step == 1 ? 2 : 1;
     }
 
-    private void computeBoard() {
+    public void computeBoard() {
         for (int i = 1; i <= row; i++)
             for (int j = 1; j <= column; j++) {
                 board[i][j] = -1;
@@ -58,7 +54,7 @@ public class PlayerVsPlayer {
 
     }
 
-    private void noMoves() {
+    public void noMoves() {
         String name1 = "Player 1", name2 = "Player 2";
         if (step == 2) {
             name1 = "Player 2";

@@ -1,7 +1,4 @@
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 
 public class Minimax {
@@ -9,27 +6,18 @@ public class Minimax {
     private final int column = 8;
     private final int maxDepth = 5;
     private int[][] regionScore = new int[row + 2][column + 2];
-    int[][] board = new int[row + 2][column + 2];
 
-    private void input() throws FileNotFoundException {
-        File x = new File("D:\\java\\OOP-rereversi-game\\src\\RegionScore.txt");
-        Scanner sc = new Scanner(x);
-        for (int i = 1; i <= row; i++)
-            for (int j = 1; j <= column; j++)
-                regionScore[i][j] = sc.nextInt();
-    }
 
-    public void setBoard(int[][] board) {
-        for (int i = 1; i <= row; i++)
-            for (int j = 1; j <= column; i++)
-                this.board[i][j] = board[i][j];
+    private void getRegionScore() {
+        regionScore = RegionScore.getRegionScore();
+
     }
 
 
     private int[][] copyBoard(int[][] board, GamePlay gamePlay, int x, int y, int player) {
         int[][] arr = new int[row + 2][column + 2];
         for (int i = 1; i <= row; i++)
-            if (column >= 0) System.arraycopy(board[i], 1, arr[i], 1, column);
+            System.arraycopy(board[i], 1, arr[i], 1, column);
         gamePlay.flipChess(arr, player, x, y);
         return arr;
     }
@@ -58,9 +46,24 @@ public class Minimax {
     }
 
     public cond decision(int x, int y, int[][] board) {
-        cond res = new cond();
 
-        return res;
+        GamePlay gamePlay = GamePlay.getInstance();
+        gamePlay.checkPosibleMove(board, 2);
+        ArrayList<cond> moveH = new ArrayList<cond>();
+        moveH = gamePlay.arrPosibleMove;
+        cond bestMove = new cond();
+        int bestVal = -1000;
+        bestMove.x = 100;
+        bestMove.y = 100;
+        for (cond v : moveH) {
+            int val = decision(2, copyBoard(board, gamePlay, v.x, v.y, 1), 2);
+            if (val > bestVal) {
+                bestMove.x = v.x;
+                bestMove.y = v.y;
+                bestVal = val;
+            }
+        }
+        return bestMove;
     }
 
     private int score(int[][] arr, int turn) {
@@ -69,6 +72,14 @@ public class Minimax {
             for (int j = 1; j <= column; i++)
                 if (arr[i][j] == turn) s += regionScore[i][j];
         return s;
+    }
+
+    public cond getOptimalMove(int[][] board, int x, int y) {
+        getRegionScore();
+        return decision(x, y, board);
+    }
+    public static Minimax getInstance() {
+        return new Minimax();
     }
 }
 
