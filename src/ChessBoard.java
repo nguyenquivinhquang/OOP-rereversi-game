@@ -36,6 +36,7 @@ public class ChessBoard {
 
     JLabel player1Score = new JLabel("Player 1 score: 0");
     JLabel player2Score = new JLabel("Player 2 score: 0");
+    private GamePlay gamePlay = GamePlay.getInstance();
 
     public void prepareGUI() {
         for (int i = 0; i < 8; i++)
@@ -89,15 +90,15 @@ public class ChessBoard {
 
         move[i][j] = player;
 
-        p1Score = GamePlay.CountPlayerScore(move, 1);
-        p2Score = GamePlay.CountPlayerScore(move, 2);
+        p1Score = gamePlay.CountPlayerScore(move, 1);
+        p2Score = gamePlay.CountPlayerScore(move, 2);
         player1Score.setText("Player 1 score: " + p1Score);
         player2Score.setText("Player 2 score: " + p2Score);
         int nextMove;
         if (player == 1)
             player = 2;
         else player = 1;
-        posibleMove = GamePlay.checkPosibleMove(move, player);
+        posibleMove = gamePlay.checkPosibleMove(move, player);
         DrawPosibleMove();
     }
 

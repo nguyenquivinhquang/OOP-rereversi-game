@@ -7,11 +7,11 @@ class cond {
 }
 
 public class GamePlay {
-    private static final int row = 8;
-    private static final int column = 8;
-    public static ArrayList<cond> arrPosibleMove = new ArrayList<cond>();
+    private final int row = 8;
+    private final int column = 8;
+    public ArrayList<cond> arrPosibleMove = new ArrayList<cond>();
 
-    public static int[][] checkPosibleMove(int[][] check, int player) { // 1: player 1 just moved, 2 player 2 just moved.
+    public int[][] checkPosibleMove(int[][] check, int player) { // 1: player 1 just moved, 2 player 2 just moved.
         int[][] posible = new int[row + 2][column + 2];
         cond[][] arr = new cond[row + 2][column + 2];
         int prev;
@@ -87,7 +87,7 @@ public class GamePlay {
         return posible;
     }
 
-    public static int CountPlayerScore(int[][] board, int player) {
+    public int CountPlayerScore(int[][] board, int player) {
         int pScore = 0;
         for (int i = 1; i <= row; i++)
             for (int j = 1; j <= column; j++)
@@ -96,7 +96,7 @@ public class GamePlay {
         return pScore;
     }
 
-    private static boolean goFind(int[][] check, int player, int i, int j, int u, int v) {
+    private boolean goFind(int[][] check, int player, int i, int j, int u, int v) {
         if (i == 0 || i == row || j == 0 || j == column || check[i][j] == -1)
             return false;
         if (check[i][j] != player)
@@ -110,7 +110,7 @@ public class GamePlay {
         return flag;
     }
 
-    public static void flipChess(int[][] check, int player, int x, int y) { //{x,y} current position, player: current player
+    public void flipChess(int[][] check, int player, int x, int y) { //{x,y} current position, player: current player
         //player = player == 1 ? 2 : 1;
         int[][] eat = new int[row + 2][column + 2];
         goFind(check, player, x + -1, y, -1, 0);
@@ -121,9 +121,21 @@ public class GamePlay {
         goFind(check, player, x + 1, y - 1, 1, -1);
         goFind(check, player, x + 1, y, 1, 0);
         goFind(check, player, x + 1, y + 1, 1, 1);
-
     }
 
+    public boolean checkEndGame(int[][] board) {
+        int count = 0;
+        for (int i = 1; i <= row; i++)
+            for (int j = 1; j <= count; j++)
+                count += board[i][j] == -1 ? 1 : 0;
+        if (count == 64)
+            return true;
+        return false;
+    }
+
+    public static GamePlay getInstance() {
+        return new GamePlay();
+    }
 }
 
 

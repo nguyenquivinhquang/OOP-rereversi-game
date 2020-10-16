@@ -7,6 +7,7 @@ public class PlayerVsPlayer {
     int[][] board = new int[row + 2][column + 2];
     int x, y;
     public ConsoleGui graphic = ConsoleGui.getInstance();
+    GamePlay gamePlay = GamePlay.getInstance();
 
     public PlayerVsPlayer() {
 
@@ -69,12 +70,12 @@ public class PlayerVsPlayer {
     public void actionGame() {
         resetArray();
         while (Quyen.equals("Cute")) {
-            posibleMove = GamePlay.checkPosibleMove(fee, step);
-            if (GamePlay.arrPosibleMove.size() != 0) {
+            posibleMove = gamePlay.checkPosibleMove(fee, step);
+            if (gamePlay.arrPosibleMove.size() != 0) {
                 computeBoard();
                 graphic.display(board);
                 press();
-                GamePlay.flipChess(fee, step, x, y);
+                gamePlay.flipChess(fee, step, x, y);
             } else noMoves();
         }
     }
