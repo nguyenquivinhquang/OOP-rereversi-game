@@ -1,6 +1,6 @@
 public class TestGuiConsole {
     public static void main(String[] args) {
-        PlayerVsPlayer test = PlayerVsPlayer.getInstance();
+        PlayervsBot test = PlayervsBot.getInstance().getInstance();
         test.actionGame();
     }
 }

@@ -83,7 +83,7 @@ public class GamePlay {
                     arrPosibleMove.add(temp);
                 }
         }
-        System.out.println("-------------------------------------");
+        //System.out.println("-------------------------------------");
         return posible;
     }
 

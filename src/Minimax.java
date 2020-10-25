@@ -48,9 +48,10 @@ public class Minimax {
     public cond decision(int x, int y, int[][] board) {
 
         GamePlay gamePlay = GamePlay.getInstance();
-        gamePlay.checkPosibleMove(board, 2);
-        ArrayList<cond> moveH = new ArrayList<cond>();
+        gamePlay.checkPosibleMove(board, 1);
+        ArrayList<cond> moveH = new ArrayList<>();
         moveH = gamePlay.arrPosibleMove;
+        System.out.println(moveH.size());
         cond bestMove = new cond();
         int bestVal = -1000;
         bestMove.x = 100;
@@ -69,7 +70,7 @@ public class Minimax {
     private int score(int[][] arr, int turn) {
         int s = 0;
         for (int i = 1; i <= row; i++)
-            for (int j = 1; j <= column; i++)
+            for (int j = 1; j <= column; j++)
                 if (arr[i][j] == turn) s += regionScore[i][j];
         return s;
     }
@@ -78,6 +79,7 @@ public class Minimax {
         getRegionScore();
         return decision(x, y, board);
     }
+
     public static Minimax getInstance() {
         return new Minimax();
     }
