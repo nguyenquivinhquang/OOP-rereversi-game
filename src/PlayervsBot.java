@@ -17,9 +17,11 @@ public class PlayervsBot extends PlayerVsPlayer {
             step = 2;
         } else {
             Minimax move = Minimax.getInstance();
-            cond temp = move.getOptimalMove(board, this.x, this.y);
+            cond temp = move.getOptimalMove(fee, this.x, this.y);
+            this.x = temp.x;  this.y = temp.y;
+            fee[this.x][this.y] = step;
             step = 1;
-            System.out.println("bot move: ");
+            System.out.println("bot move: " + this.x + " " + this.y);
         }
     }
 

@@ -14,10 +14,10 @@ public class PlayerVsPlayer {
             for (int j = 0; j <= column; j++)
                 fee[i][j] = -1;
 
-        fee[4][4] = 1;
-        fee[4][5] = 2;
-        fee[5][4] = 2;
-        fee[5][5] = 1;
+        fee[4][4] = 2;
+        fee[4][5] = 1;
+        fee[5][4] = 1;
+        fee[5][5] = 2;
     }
 
     public int checkCanMove(int x, int y) {

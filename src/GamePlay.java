@@ -12,6 +12,7 @@ public class GamePlay {
     public ArrayList<cond> arrPosibleMove = new ArrayList<>();
 
     public int[][] checkPosibleMove(int[][] check, int player) { // 1: player 1 just moved, 2 player 2 just moved.
+        arrPosibleMove.clear();
         int[][] posible = new int[row + 2][column + 2];
         cond[][] arr = new cond[row + 2][column + 2];
         int prev;
@@ -110,7 +111,7 @@ public class GamePlay {
         return flag;
     }
 
-    public void flipChess(int[][] check, int player, int x, int y) { //{x,y} current position, player: current player
+    public void flipChess(int[][] check, int player, int x, int y) { //{x,y} current position, player: previous player
         //player = player == 1 ? 2 : 1;
         goFind(check, player, x + -1, y, -1, 0);
         goFind(check, player, x - 1, y + -1, -1, -1);
