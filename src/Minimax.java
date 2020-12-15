@@ -8,9 +8,6 @@ public class Minimax {
     private static  int[][] regionScore = RegionScore.getRegionScore();
 
 
-
-
-
     private int[][] copyBoard(int[][] board, GamePlay gamePlay, int x, int y, int player) {
         int[][] arr = new int[row + 2][column + 2];
 
@@ -83,5 +80,3 @@ public class Minimax {
         return new Minimax();
     }
 }
-
-
