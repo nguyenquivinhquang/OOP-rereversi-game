@@ -43,7 +43,15 @@ public class PlayerVsPlayer {
         this.y = y;
         step = step == 1 ? 2 : 1;
     }
-
+    public int setXY(int x, int y) {
+        int check = checkCanMove(x, y);
+        if (check != 0 )
+            return check;
+        fee[x][y] = step;
+        this.x = x;
+        this.y = y;
+        return 0;
+    }
     public void computeBoard() {
         for (int i = 1; i <= row; i++)
             for (int j = 1; j <= column; j++) {
