@@ -1,15 +1,28 @@
+import GUI.Parameter;
+import GUI.RenderChessboard;
 
-public class PlayerVsPlayer {
-    private String Quyen = "Cute";
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+public class PlayerVsPlayer extends JPanel {
+    private final String Quyen = "Cute";
     int column = 8, row = 8, step = 1;
-    public int[][] fee = new int[row + 2][column + 2];
-    int[][] posibleMove = new int[row + 2][column + 2];
-    int[][] board = new int[row + 2][column + 2];
-    int x, y;
-    public ConsoleGui graphic = ConsoleGui.getInstance();
-    GamePlay gamePlay = GamePlay.getInstance();
+    int x, y, p1Score = 0, p2Score = 0;
 
-    public void resetArray() {
+    public int[][] fee = new int[row + 2][column + 2];
+    int[][] possibleMove = new int[row + 2][column + 2];
+    int[][] board = new int[row + 2][column + 2];
+
+
+    public ConsoleGui graphic = ConsoleGui.getInstance();
+
+    GamePlay gamePlay = GamePlay.getInstance();
+    JFrame frame = new JFrame("Reversi");
+    RenderChessboard boardFrame;
+
+    private void resetArray() {
         for (int i = 0; i <= row; i++)
             for (int j = 0; j <= column; j++)
                 fee[i][j] = -1;
@@ -21,67 +34,107 @@ public class PlayerVsPlayer {
     }
 
     public int checkCanMove(int x, int y) {
+        if (x > 8 || y > 8) return 3;
         if (fee[x][y] != -1)
             return 1;
-        if (posibleMove[x][y] != 1)
+        if (possibleMove[x][y] != 1)
             return 2;
         return 0;
     }
 
-    public void press() {
-        int x = 0, y = 0;
-        while (fee[x][y] == -1) {
-            cond temp = graphic.getXY();
-            x = temp.x;
-            y = temp.y;
-            int check = checkCanMove(x, y);
-            if (check != 0)
-                graphic.warning(check);
-            else fee[x][y] = step;
-        }
+    public Boolean press(int x, int y) {
+
+        int check = checkCanMove(x, y);
+        if (check != 0) {
+            if (check == 3) return false;
+            boardFrame.warning(frame,check);
+            return false;
+        } else fee[x][y] = step;
+
         this.x = x;
         this.y = y;
         step = step == 1 ? 2 : 1;
+        return true;
+
     }
-    public int setXY(int x, int y) {
-        int check = checkCanMove(x, y);
-        if (check != 0 )
-            return check;
-        fee[x][y] = step;
-        this.x = x;
-        this.y = y;
-        return 0;
-    }
-    public void computeBoard() {
+
+    private void computeBoard() {
         for (int i = 1; i <= row; i++)
             for (int j = 1; j <= column; j++) {
                 board[i][j] = -1;
                 board[i][j] = fee[i][j];
-                if (fee[i][j] == -1 && posibleMove[i][j] == 1) board[i][j] = 3;
+                if (fee[i][j] == -1 && possibleMove[i][j] == 1) board[i][j] = 3;
             }
 
     }
 
-    public void noMoves() {
-        String name1 = "Player 1", name2 = "Player 2";
-        if (step == 2) {
-            name1 = "Player 2";
-            name2 = "Player 1";
-        }
-        System.out.println(name1 + "has no move, " + name2 + "'s turn ");
-    }
 
+
+    private void getRowColumn(int x, int y) {
+        int si = (int) (Double.valueOf(Parameter.size) / 8.0);
+        this.x = x / si + 1;
+        this.y = y / si + 1;
+
+        System.out.println(this.x + " " + this.y);
+    }
+    private void winner() {
+        if (p1Score > p2Score)
+            boardFrame.winner(frame, "Player 1");
+        else boardFrame.winner(frame, "Player 2");
+        frame.dispose();
+
+    }
     public void actionGame() {
         resetArray();
-        while (Quyen.equals("Cute")) {
-            posibleMove = gamePlay.checkPosibleMove(fee, step);
-            if (gamePlay.arrPosibleMove.size() != 0) {
-                computeBoard();
-                graphic.display(board);
-                press();
-                gamePlay.flipChess(fee, step, x, y);
-            } else noMoves();
-        }
+//        while (Quyen.equals("Cute")) {
+//            possibleMove = gamePlay.checkPosibleMove(fee, step);
+//            if (gamePlay.arrPosibleMove.size() != 0) {
+//                computeBoard();
+//                graphic.display(board);
+//                press();
+//                gamePlay.flipChess(fee, step, x, y);
+//            } else noMoves();
+//        }
+
+        ///////////////////////////////////////////
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        boardFrame = new RenderChessboard(board);
+//        boardFrame.setBoard(board);
+        frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Parameter.logo));
+        possibleMove = gamePlay.checkPosibleMove(fee, step);
+        computeBoard();
+        frame.add(boardFrame);
+        boardFrame.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                boardFrame.setBoard(board);
+//                possibleMove = gamePlay.checkPosibleMove(fee, step);
+//                boardFrame.setBoard(board);
+                if (gamePlay.arrPosibleMove.size() != 0) {
+
+                    getRowColumn(e.getX(), e.getY());
+
+                    if (press(x, y) == true) {
+//                        boardFrame.setXY(x, y);
+                        gamePlay.flipChess(fee, step, x, y);
+                        possibleMove = gamePlay.checkPosibleMove(fee, step);
+                        computeBoard();
+//                        graphic.display(board);
+
+                    }
+                } else{
+                    boardFrame.noMoves(step);
+                }
+                if (gamePlay.checkEndGame(board) == true ) {
+                    winner();
+                    step = step == 1 ? 2 : 1;
+                }
+            }
+        });
+
+        frame.setSize(1000, 700);
+        frame.setVisible(true);
+
     }
 
     public static PlayerVsPlayer getInstance() {

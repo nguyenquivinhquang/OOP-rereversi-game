@@ -25,9 +25,19 @@ public class RenderChess extends JPanel {
         g.setColor(Color.BLUE);
         g.setFont(g.getFont().deriveFont(20f));
         g.drawString("score is " + position.x, 600, 100);
+
+
+        BufferedImage joke = null;
+        try {
+            joke = ImageIO.read(new File(Parameter.winner));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        g.drawImage(joke, 600, 200, 100 ,100, null);
     }
 
-    public void paintChess(Graphics g) {
+    public void paintChess(Graphics g, int[][] board) {
         BufferedImage player1Image = null, player2Image = null, suggestImage = null;
         try {
             player1Image = ImageIO.read(new File(Parameter.blackChess));
@@ -38,6 +48,7 @@ public class RenderChess extends JPanel {
         }
         for (int i = 1; i <= row; i++)
             for (int j = 1; j <= column; j++) {
+                int x = i - 1, y = j - 1;
                 BufferedImage image = null;
                 if (board[i][j] == 1)
                     image = player1Image;
@@ -45,8 +56,8 @@ public class RenderChess extends JPanel {
                     image = player2Image;
                 else if (board[i][j] == 3)
                     image = suggestImage;
-                g.drawImage(image, Parameter.xStart + Parameter.stepSize * i,
-                        Parameter.yStart + Parameter.stepSize * j, Parameter.width, Parameter.height, null);
+                g.drawImage(image, Parameter.xStart + Parameter.stepSize * x,
+                        Parameter.yStart + Parameter.stepSize * y, Parameter.width, Parameter.height, null);
 
             }
     }

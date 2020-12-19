@@ -17,11 +17,10 @@ public class Gui extends JPanel {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         RenderChessboard board = new RenderChessboard(x, y);
-        JLabel text = new JLabel();
-        text.setText("hihi");
+
         frame.add(board);
-        Image icon = Toolkit.getDefaultToolkit().getImage(Parameter.logo);
-        frame.setIconImage(icon);
+
+        frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Parameter.logo));
         board.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -46,6 +45,5 @@ public class Gui extends JPanel {
     }
     public static void main(String[] args) {
         Gui gui = new Gui();
-
     }
 }

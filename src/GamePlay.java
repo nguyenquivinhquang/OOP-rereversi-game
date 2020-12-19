@@ -127,7 +127,9 @@ public class GamePlay {
         int count = 0;
         for (int i = 1; i <= row; i++)
             for (int j = 1; j <= column; j++)
-                count += board[i][j] == -1 ? 1 : 0;
+               if (board[i][j] == 1 || board[i][j] == 2)
+                   count++;
+            System.out.println(count);
         return count == 64;
     }
 

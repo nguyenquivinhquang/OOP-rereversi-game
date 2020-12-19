@@ -9,3 +9,5 @@ out/production/OOP-rereversi-game/ConsoleGui.class
 out/production/OOP-rereversi-game/GamePlay.class
 out/production/OOP-rereversi-game/RegionScore.txt
 out/production/OOP-rereversi-game/GamePlay.class
+*.class
+*.class
