@@ -9,7 +9,8 @@ Menu:
     + PlayervsAi:  trong đây gọi PlayervsAi.getInstance();
     
     + Instruction: Trong đây sẽ hướng dẫn cách chơi
-    
+    + setPlayerName: nhập tên người chơi
+    + choseBackground: người chơi sẽ chọn các hình nền bàn cờ, ( cái này thật ra là nếu player chọn hình nào thì mình sẽ đổi thông số Parameter.defaultBoard = địa chỉ của ảnh người đó chọn).
     + actionPerformed(ActionEvent e): e sẽ trả về cho biết người chơi đã ấn vào jbutton nào, rùi sẽ gọi các method theo jbutton đó.
     ....
     
