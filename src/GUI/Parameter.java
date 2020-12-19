@@ -16,4 +16,7 @@ public class Parameter {
     public static String suggest = path + "\\Suggestions.png\\";
     public static String logo = path + "\\Logo.png\\";
     public static String cannotMove = path + "\\cannotMove.gif\\";
+
+    public static String player1 = "p1";
+    public static String player2 = "p2";
 }

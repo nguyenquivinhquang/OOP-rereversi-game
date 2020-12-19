@@ -11,7 +11,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class RenderChessboard extends JPanel {
-    private  int x, y;
+    private  int x, y, p1Score, p2Score;
 
 
     int column = 8, row = 8, step = 1;
@@ -22,9 +22,9 @@ public class RenderChessboard extends JPanel {
         this.y = y;
     }
     public RenderChessboard(int[][] board) {
-        board[4][4] = 2; board[4][5] = 1; board[5][4] = 1; board[5][5] = 2;
-//        board[4][3] = 3;
+
         this.board = board;
+        p1Score = p2Score = 2;
     }
     public void setXY(int x, int y) {
         this.x = x - 1;
@@ -32,8 +32,10 @@ public class RenderChessboard extends JPanel {
         board[x][y] = 1;
         repaint();
     }
-    public void setBoard(int[][] board) {
+    public void setBoard(int[][] board, int p1Score, int p2Score) {
         this.board = board;
+        this.p1Score = p1Score;
+        this.p2Score = p2Score;
     }
     public void paintComponent(Graphics g) {
         g.clearRect(0,0,Parameter.size, Parameter.size);
@@ -50,7 +52,7 @@ public class RenderChessboard extends JPanel {
 
         RenderChess chess = new RenderChess(x, y);
 
-        chess.paintScore(g);
+        chess.paintScore(g, p1Score, p2Score);
         chess.paintChess(g, board);
         this.add(chess);
         repaint();

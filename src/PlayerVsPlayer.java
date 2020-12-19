@@ -9,7 +9,7 @@ import java.awt.event.MouseEvent;
 public class PlayerVsPlayer extends JPanel {
     private final String Quyen = "Cute";
     int column = 8, row = 8, step = 1;
-    int x, y, p1Score = 0, p2Score = 0;
+    int x, y, p1Score = 2, p2Score = 2;
 
     public int[][] fee = new int[row + 2][column + 2];
     int[][] possibleMove = new int[row + 2][column + 2];
@@ -102,12 +102,13 @@ public class PlayerVsPlayer extends JPanel {
 //        boardFrame.setBoard(board);
         frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Parameter.logo));
         possibleMove = gamePlay.checkPosibleMove(fee, step);
+
         computeBoard();
         frame.add(boardFrame);
         boardFrame.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                boardFrame.setBoard(board);
+
 //                possibleMove = gamePlay.checkPosibleMove(fee, step);
 //                boardFrame.setBoard(board);
                 if (gamePlay.arrPosibleMove.size() != 0) {
@@ -119,7 +120,8 @@ public class PlayerVsPlayer extends JPanel {
                         gamePlay.flipChess(fee, step, x, y);
                         possibleMove = gamePlay.checkPosibleMove(fee, step);
                         computeBoard();
-//                        graphic.display(board);
+
+                        System.out.println("Score: " + p1Score + " " + p2Score);
 
                     }
                 } else{
@@ -129,6 +131,9 @@ public class PlayerVsPlayer extends JPanel {
                     winner();
                     step = step == 1 ? 2 : 1;
                 }
+                p1Score = gamePlay.CountPlayerScore(board, 1);
+                p2Score = gamePlay.CountPlayerScore(board, 2);
+                boardFrame.setBoard(board, p1Score, p2Score);
             }
         });
 

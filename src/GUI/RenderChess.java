@@ -18,23 +18,17 @@ public class RenderChess extends JPanel {
         position.setXY(x, y);
     }
 
-    public void paintScore(Graphics g) {
+    public void paintScore(Graphics g, int p1Score, int p2Score) {
         g.setColor(Color.WHITE);
-        g.fillRect(600, 60, 100, 100);
+        g.fillRect(600, 60, 500, 500);
 
         g.setColor(Color.BLUE);
         g.setFont(g.getFont().deriveFont(20f));
-        g.drawString("score is " + position.x, 600, 100);
+        g.drawString(Parameter.player1 + " score is " + p1Score, 600, 100);
+        g.drawString(Parameter.player2 + " score is " + p2Score, 600, 150);
 
 
-        BufferedImage joke = null;
-        try {
-            joke = ImageIO.read(new File(Parameter.winner));
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        g.drawImage(joke, 600, 200, 100 ,100, null);
     }
 
     public void paintChess(Graphics g, int[][] board) {

@@ -102,8 +102,7 @@ public class GamePlay {
             return false;
         if (check[i][j] != player)
             return true;
-//        i += u;
-//        j += v;
+
         boolean flag = goFind(check, player, i + u, j + v, u, v);
         if (flag) {
             check[i][j] = player == 1 ? 2 : 1;
