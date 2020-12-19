@@ -2,7 +2,6 @@ package GUI;
 
 public class Parameter {
     public static int xStart = 0, yStart = 0;
-    private  int x, y;
 
     public static int size = 560;
     public static int stepSize = size / 8, width = size / 8, height = size / 8;
@@ -13,6 +12,7 @@ public class Parameter {
     public static String whiteChess = "E:\\java\\OOP-rereversi-game\\src\\Image\\whiteChess.png\\";
     public static String blackChess = "E:\\java\\OOP-rereversi-game\\src\\Image\\blackChess.png\\";
     public static String winner = "E:\\java\\OOP-rereversi-game\\src\\Image\\chickenShake.gif\\";
+    public static String suggest = "E:\\java\\OOP-rereversi-game\\src\\Image\\Suggestions.png\\";
 
 
 }

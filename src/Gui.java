@@ -27,10 +27,7 @@ public class Gui extends JPanel {
                 getRowColumn(e.getX(), e.getY());
                 System.out.println(x + " " + y);
                 board.setXY(x, y);
-                if (x == 3){
-                    RenderChessboard.winner(frame, "1");
-                    frame.dispose();
-                }
+
 
             }
         });
@@ -39,7 +36,7 @@ public class Gui extends JPanel {
     }
 
     public void getRowColumn(int x, int y) {
-        int si = (int) (Double.valueOf(RenderChessboard.si) / 8.0);
+        int si = (int) (Double.valueOf(Parameter.size) / 8.0);
         this.x = x / si + 1;
         this.y = y / si + 1;
         System.out.println(this.x + " " + this.y);
@@ -48,9 +45,7 @@ public class Gui extends JPanel {
         frame.dispose();
     }
     public static void main(String[] args) {
-
         Gui gui = new Gui();
-
 
     }
 }

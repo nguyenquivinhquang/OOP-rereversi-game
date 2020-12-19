@@ -19,9 +19,6 @@ public class RenderChess extends JPanel {
     }
 
     public void paintScore(Graphics g) {
-        int width = getWidth();
-        int height = getHeight();
-
         g.setColor(Color.WHITE);
         g.fillRect(600, 60, 100, 100);
 
@@ -33,9 +30,9 @@ public class RenderChess extends JPanel {
     public void paintChess(Graphics g) {
         BufferedImage player1Image = null, player2Image = null, suggestImage = null;
         try {
-            player1Image = ImageIO.read(new File("E:\\java\\OOP-rereversi-game\\src\\Image\\Black circle chess.png\\"));
-            player2Image = ImageIO.read(new File("E:\\java\\OOP-rereversi-game\\src\\Image\\White circle chess.png\\"));
-            suggestImage = ImageIO.read(new File("E:\\java\\OOP-rereversi-game\\src\\Image\\Suggestions.png\\"));
+            player1Image = ImageIO.read(new File(Parameter.blackChess));
+            player2Image = ImageIO.read(new File(Parameter.whiteChess));
+            suggestImage = ImageIO.read(new File(Parameter.suggest));
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -12,12 +12,7 @@ import javax.swing.*;
 
 public class RenderChessboard extends JPanel {
     private  int x, y;
-//    private final int xStart = 0;
-//    private final int yStart = 0;
-//    public static int si = 480;
-//    private final int stepSize = si / 8;
-//    private final int width = 60;
-//    private final int height = 60;
+
     public int check = 0;
     int column = 8, row = 8, step = 1;
     public int[][] board = new int[row + 2][column + 2];
@@ -56,7 +51,7 @@ public class RenderChessboard extends JPanel {
             e.printStackTrace();
         }
         g.drawImage(player1Image, Parameter.xStart + Parameter.stepSize * x,Parameter.yStart + Parameter.stepSize * y, Parameter.width, Parameter.height, null );
-//        System.out.println( stepSize * x + ":" +  stepSize * y );
+
         //
         RenderChess chess = new RenderChess(x, y);
         chess.paintScore(g);
@@ -81,6 +76,3 @@ public class RenderChessboard extends JPanel {
                 "Quyên ngốc ", JOptionPane.INFORMATION_MESSAGE, icon);
     }
 }
-//  g.drawImage(i0, -78, -78,240, 240,  null);
-
-// step size = 45
