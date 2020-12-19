@@ -13,6 +13,6 @@ public class Parameter {
     public static String blackChess = "E:\\java\\OOP-rereversi-game\\src\\Image\\blackChess.png\\";
     public static String winner = "E:\\java\\OOP-rereversi-game\\src\\Image\\chickenShake.gif\\";
     public static String suggest = "E:\\java\\OOP-rereversi-game\\src\\Image\\Suggestions.png\\";
-
+    public static String logo = "E:\\java\\OOP-rereversi-game\\src\\Image\\Logo.png\\";
 
 }

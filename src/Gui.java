@@ -1,5 +1,6 @@
 
 
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -19,15 +20,14 @@ public class Gui extends JPanel {
         JLabel text = new JLabel();
         text.setText("hihi");
         frame.add(board);
-
+        Image icon = Toolkit.getDefaultToolkit().getImage(Parameter.logo);
+        frame.setIconImage(icon);
         board.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-//                System.out.println(e.getX() + "," + e.getY());
                 getRowColumn(e.getX(), e.getY());
                 System.out.println(x + " " + y);
                 board.setXY(x, y);
-
 
             }
         });
