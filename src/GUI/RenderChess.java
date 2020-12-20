@@ -11,7 +11,6 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 public class RenderChess extends JPanel {
-    int column = 8, row = 8, step = 1;
     private ArrayList<Coordinate> board;
     private Coordinate position = new Coordinate();
 
@@ -22,12 +21,18 @@ public class RenderChess extends JPanel {
     public void paintScore(Graphics g, int p1Score, int p2Score) {
 
         g.setColor(Color.WHITE);
-        g.setFont(new Font("Garamond", Font.PLAIN, 20));
+        g.setFont(new Font("Akzidenz-Grotesk", Font.PLAIN, 20));
         g.drawString(Parameter.player1 + " score is " + p1Score, Parameter.xStart + 600, Parameter.yStart +100);
         g.drawString(Parameter.player2 + " score is " + p2Score, Parameter.xStart + 600, Parameter.yStart +150);
 
     }
-
+    public void paintCurrentMove(Graphics g, int step) {
+        g.setColor(Color.magenta);
+        g.setFont(new Font("Uni Sans", Font.ITALIC, 20));
+        String move = "White";
+        if (step == 2) move = "Black";
+        g.drawString(move + " move's ", Parameter.xStart + 600, Parameter.yStart + 200);
+    }
     public void paintChess(Graphics g, ArrayList<Coordinate> board) {
         BufferedImage player1Image = null, player2Image = null, suggestImage = null;
         try {

@@ -1,7 +1,8 @@
 package Core;
 
-import java.util.ArrayList;
+import GUI.Coordinate;
 
+import java.util.ArrayList;
 
 
 public class GamePlay {
@@ -86,13 +87,15 @@ public class GamePlay {
         return posible;
     }
 
-    public int CountPlayerScore(int[][] board, int player) {
-        int pScore = 0;
+    public Coordinate CountPlayerScore(int[][] board) {
+        Coordinate score = new Coordinate();
+
         for (int i = 1; i <= row; i++)
-            for (int j = 1; j <= column; j++)
-                if (board[i][j] == player)
-                    pScore++;
-        return pScore;
+            for (int j = 1; j <= column; j++) {
+                if (board[i][j] == 1) score.x++;
+                if (board[i][j] == 2) score.y++;
+            }
+        return score;
     }
 
     private boolean goFind(int[][] check, int player, int i, int j, int u, int v) {
@@ -124,9 +127,9 @@ public class GamePlay {
         int count = 0;
         for (int i = 1; i <= row; i++)
             for (int j = 1; j <= column; j++)
-               if (board[i][j] == 1 || board[i][j] == 2)
-                   count++;
-            System.out.println(count);
+                if (board[i][j] == 1 || board[i][j] == 2)
+                    count++;
+        System.out.println(count);
         return count == 64;
     }
 

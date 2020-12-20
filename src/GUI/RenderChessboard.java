@@ -32,10 +32,11 @@ public class RenderChessboard extends JPanel {
 
         repaint();
     }
-    public void setBoard(ArrayList<Coordinate> board, int p1Score, int p2Score) {
+    public void setBoard(ArrayList<Coordinate> board, int p1Score, int p2Score, int step) {
         this.board = board;
         this.p1Score = p1Score;
         this.p2Score = p2Score;
+        this.step = step;
     }
     public void paintComponent(Graphics g) {
         g.clearRect(0,0,Parameter.size, Parameter.size);
@@ -55,6 +56,7 @@ public class RenderChessboard extends JPanel {
 
         chess.paintScore(g, p1Score, p2Score);
         chess.paintChess(g, board);
+        chess.paintCurrentMove(g,step);
         this.add(chess);
         repaint();
 

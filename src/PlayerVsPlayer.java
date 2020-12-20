@@ -18,6 +18,7 @@ public class PlayerVsPlayer extends JPanel {
     int[][] possibleMove = new int[row + 2][column + 2];
     int[][] board = new int[row + 2][column + 2];
 
+    Coordinate score = new Coordinate();
 
     public ConsoleGui graphic = ConsoleGui.getInstance();
 
@@ -36,7 +37,7 @@ public class PlayerVsPlayer extends JPanel {
         fee[5][5] = 2;
     }
 
-    public int checkCanMove(int x, int y) {
+    protected int checkCanMove(int x, int y) {
         if (x > 8 || y > 8) return 3;
         if (fee[x][y] != -1)
             return 1;
@@ -61,7 +62,7 @@ public class PlayerVsPlayer extends JPanel {
 
     }
 
-    private void computeBoard() {
+    protected void computeBoard() {
         stage.clear();
         for (int i = 1; i <= row; i++)
             for (int j = 1; j <= column; j++) {
@@ -73,65 +74,60 @@ public class PlayerVsPlayer extends JPanel {
 
     }
 
-    private void getRowColumn(int x, int y) {
+    protected void getRowColumn(int x, int y) {
         int si = (int) (Double.valueOf(Parameter.size) / 8.0);
         this.x = (x - Parameter.xStart) / si + 1;
         this.y = (y - Parameter.yStart) / si + 1;
 
         System.out.println(this.x + " " + this.y);
     }
-    private void winner() {
+    protected void winner() {
         if (p1Score > p2Score)
             boardFrame.winner(frame, "Player 1");
         else boardFrame.winner(frame, "Player 2");
         frame.dispose();
-
     }
     public void actionGame() {
-        resetArray();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        boardFrame = new RenderChessboard(stage);
 
-        frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Parameter.logo));
-        possibleMove = gamePlay.checkPosibleMove(fee, step);
-
-        computeBoard();
-        frame.add(boardFrame);
         boardFrame.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-
-
                 if (gamePlay.arrPosibleMove.size() != 0) {
-
                     getRowColumn(e.getX(), e.getY());
 
                     if (press(x, y) == true) {
                         gamePlay.flipChess(fee, step, x, y);
                         possibleMove = gamePlay.checkPosibleMove(fee, step);
                         computeBoard();
-
                         System.out.println("Score: " + p1Score + " " + p2Score);
-
                     }
-                } else{
-                    boardFrame.noMoves(step);
-                }
+                } else boardFrame.noMoves(step);
+
                 if (gamePlay.checkEndGame(board) == true ) {
                     winner();
                     step = step == 1 ? 2 : 1;
                 }
-                p1Score = gamePlay.CountPlayerScore(board, 1);
-                p2Score = gamePlay.CountPlayerScore(board, 2);
-                boardFrame.setBoard(stage, p1Score, p2Score);
+                score = gamePlay.CountPlayerScore(board);
+                p1Score = score.x;  p2Score = score.y;
+                boardFrame.setBoard(stage, p1Score, p2Score, step);
             }
         });
+    }
+    public PlayerVsPlayer() {
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        boardFrame = new RenderChessboard(stage);
+        frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Parameter.logo));
+
+        resetArray();
+        possibleMove = gamePlay.checkPosibleMove(fee, step);
+        computeBoard();
+        frame.add(boardFrame);
+
+        actionGame();
 
         frame.setSize(1000, 700);
         frame.setVisible(true);
-
     }
-
     public static PlayerVsPlayer getInstance() {
         return new PlayerVsPlayer();
     }
