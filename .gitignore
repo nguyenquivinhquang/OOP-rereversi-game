@@ -1,4 +1,5 @@
 out/production/OOP-rereversi-game/ConsoleGui.class
+out\production\OOP-rereversi-game\Gui.class
 .class
 *.class
 *.class
@@ -6,9 +7,9 @@ out/production/OOP-rereversi-game/ConsoleGui.class
 *.class
 *.class
 *.class
-out/
+out\
 out/production/OOP-rereversi-game/RegionScore.txt
-out/production/OOP-rereversi-game/GamePlay.class
+out/production/
 *.class
 *.class
 *.class

@@ -1,4 +1,5 @@
 import Core.GamePlay;
+import GUI.Coordinate;
 import GUI.Parameter;
 import GUI.RenderChessboard;
 
@@ -6,9 +7,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 public class PlayerVsPlayer extends JPanel {
-    private final String Quyen = "Cute";
+    ArrayList<Coordinate> stage = new ArrayList<Coordinate>();
     int column = 8, row = 8, step = 1;
     int x, y, p1Score = 2, p2Score = 2;
 
@@ -60,15 +62,16 @@ public class PlayerVsPlayer extends JPanel {
     }
 
     private void computeBoard() {
+        stage.clear();
         for (int i = 1; i <= row; i++)
             for (int j = 1; j <= column; j++) {
                 board[i][j] = -1;
                 board[i][j] = fee[i][j];
                 if (fee[i][j] == -1 && possibleMove[i][j] == 1) board[i][j] = 3;
+                if (board[i][j] != -1) stage.add(new Coordinate(i, j, board[i][j]));
             }
 
     }
-
 
     private void getRowColumn(int x, int y) {
         int si = (int) (Double.valueOf(Parameter.size) / 8.0);
@@ -87,7 +90,7 @@ public class PlayerVsPlayer extends JPanel {
     public void actionGame() {
         resetArray();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        boardFrame = new RenderChessboard(board);
+        boardFrame = new RenderChessboard(stage);
 
         frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Parameter.logo));
         possibleMove = gamePlay.checkPosibleMove(fee, step);
@@ -120,7 +123,7 @@ public class PlayerVsPlayer extends JPanel {
                 }
                 p1Score = gamePlay.CountPlayerScore(board, 1);
                 p2Score = gamePlay.CountPlayerScore(board, 2);
-                boardFrame.setBoard(board, p1Score, p2Score);
+                boardFrame.setBoard(stage, p1Score, p2Score);
             }
         });
 

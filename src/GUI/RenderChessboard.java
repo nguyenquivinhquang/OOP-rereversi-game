@@ -15,13 +15,13 @@ public class RenderChessboard extends JPanel {
 
 
     int column = 8, row = 8, step = 1;
-    public int[][] board = new int[row + 2][column + 2];
+    private ArrayList<Coordinate> board;
 
     public RenderChessboard(int x, int y) {
         this.x = x;
         this.y = y;
     }
-    public RenderChessboard(int[][] board) {
+    public RenderChessboard(ArrayList<Coordinate> board) {
 
         this.board = board;
         p1Score = p2Score = 2;
@@ -29,10 +29,10 @@ public class RenderChessboard extends JPanel {
     public void setXY(int x, int y) {
         this.x = x - 1;
         this.y = y - 1;
-        board[x][y] = 1;
+
         repaint();
     }
-    public void setBoard(int[][] board, int p1Score, int p2Score) {
+    public void setBoard(ArrayList<Coordinate> board, int p1Score, int p2Score) {
         this.board = board;
         this.p1Score = p1Score;
         this.p2Score = p2Score;

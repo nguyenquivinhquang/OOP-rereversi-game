@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 
 import javax.imageio.ImageIO;
@@ -11,7 +12,7 @@ import javax.swing.JPanel;
 
 public class RenderChess extends JPanel {
     int column = 8, row = 8, step = 1;
-    public int[][] board = new int[row + 2][column + 2];
+    private ArrayList<Coordinate> board;
     private Coordinate position = new Coordinate();
 
     public RenderChess(int x, int y) {
@@ -27,7 +28,7 @@ public class RenderChess extends JPanel {
 
     }
 
-    public void paintChess(Graphics g, int[][] board) {
+    public void paintChess(Graphics g, ArrayList<Coordinate> board) {
         BufferedImage player1Image = null, player2Image = null, suggestImage = null;
         try {
             player1Image = ImageIO.read(new File(Parameter.blackChess));
@@ -36,19 +37,18 @@ public class RenderChess extends JPanel {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        for (int i = 1; i <= row; i++)
-            for (int j = 1; j <= column; j++) {
-                int x = i - 1, y = j - 1;
-                BufferedImage image = null;
-                if (board[i][j] == 1)
-                    image = player1Image;
-                else if (board[i][j] == 2)
-                    image = player2Image;
-                else if (board[i][j] == 3)
-                    image = suggestImage;
-                g.drawImage(image, Parameter.xStart + Parameter.stepSize * x,
-                        Parameter.yStart + Parameter.stepSize * y, Parameter.width, Parameter.height, null);
 
-            }
+        for (Coordinate v : board) {
+            BufferedImage image = null;
+            int x = v.x - 1, y = v.y - 1;
+            if (v.type == 1)
+                image = player1Image;
+            else if (v.type  == 2)
+                image = player2Image;
+            else if (v.type  == 3)
+                image = suggestImage;
+            g.drawImage(image, Parameter.xStart + Parameter.stepSize * x,
+                    Parameter.yStart + Parameter.stepSize * y, Parameter.width, Parameter.height, null);
+        }
     }
 }
