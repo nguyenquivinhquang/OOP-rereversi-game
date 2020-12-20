@@ -1,3 +1,6 @@
+import Core.Minimax;
+import Core.cond;
+
 public class PlayervsBot extends PlayerVsPlayer {
 
     public void press() {

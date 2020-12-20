@@ -1,3 +1,5 @@
+package Core;
+
 public class RegionScore {
     private static final int column = 8;
     private static final int row = 8;

@@ -1,3 +1,5 @@
+import Core.cond;
+
 import java.util.Scanner;
 
 public class ConsoleGui {
