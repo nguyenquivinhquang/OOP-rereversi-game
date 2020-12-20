@@ -72,8 +72,8 @@ public class PlayerVsPlayer extends JPanel {
 
     private void getRowColumn(int x, int y) {
         int si = (int) (Double.valueOf(Parameter.size) / 8.0);
-        this.x = x / si + 1;
-        this.y = y / si + 1;
+        this.x = (x - Parameter.xStart) / si + 1;
+        this.y = (y - Parameter.yStart) / si + 1;
 
         System.out.println(this.x + " " + this.y);
     }
@@ -104,7 +104,6 @@ public class PlayerVsPlayer extends JPanel {
                     getRowColumn(e.getX(), e.getY());
 
                     if (press(x, y) == true) {
-//                        boardFrame.setXY(x, y);
                         gamePlay.flipChess(fee, step, x, y);
                         possibleMove = gamePlay.checkPosibleMove(fee, step);
                         computeBoard();

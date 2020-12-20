@@ -1,7 +1,7 @@
 package GUI;
 
 public class Parameter {
-    public static int xStart = 0, yStart = 0;
+    public static int xStart = 100, yStart = 50;
 
     public static int size = 560;
     public static int stepSize = size / 8, width = size / 8, height = size / 8;
@@ -16,7 +16,8 @@ public class Parameter {
     public static String suggest = path + "\\Suggestions.png\\";
     public static String logo = path + "\\Logo.png\\";
     public static String cannotMove = path + "\\cannotMove.gif\\";
-
-    public static String player1 = "p1";
-    public static String player2 = "p2";
+    public static String candy = path + "\\candy.jpg\\";
+    public static String background = path + "\\background.jpg\\";
+    public static String player1 = "Quang Cute";
+    public static String player2 = "Quyên Ngốcx";
 }

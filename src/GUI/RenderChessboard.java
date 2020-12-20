@@ -39,16 +39,17 @@ public class RenderChessboard extends JPanel {
     }
     public void paintComponent(Graphics g) {
         g.clearRect(0,0,Parameter.size, Parameter.size);
-        BufferedImage imageBackground = null, imageChess = null;
+        BufferedImage imageBoard = null, imageBackground = null;
         // get imageBackground
         try {
-            imageBackground = ImageIO.read(new File(Parameter.defaultBoard));
+            imageBoard = ImageIO.read(new File(Parameter.defaultBoard));
+            imageBackground = ImageIO.read(new File(Parameter.background));
         }
         catch (IOException e) {
             e.printStackTrace();
         }
-
-        g.drawImage(imageBackground, 0, 0,Parameter.size, Parameter.size, null);
+        g.drawImage(imageBackground, 0, 0,1000, 700, null);
+        g.drawImage(imageBoard, Parameter.xStart, Parameter.yStart,Parameter.size, Parameter.size, null);
 
         RenderChess chess = new RenderChess(x, y);
 

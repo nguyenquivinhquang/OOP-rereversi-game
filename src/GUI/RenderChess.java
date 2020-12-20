@@ -19,15 +19,11 @@ public class RenderChess extends JPanel {
     }
 
     public void paintScore(Graphics g, int p1Score, int p2Score) {
+
         g.setColor(Color.WHITE);
-        g.fillRect(600, 60, 500, 500);
-
-        g.setColor(Color.BLUE);
-        g.setFont(g.getFont().deriveFont(20f));
-        g.drawString(Parameter.player1 + " score is " + p1Score, 600, 100);
-        g.drawString(Parameter.player2 + " score is " + p2Score, 600, 150);
-
-
+        g.setFont(new Font("Garamond", Font.PLAIN, 20));
+        g.drawString(Parameter.player1 + " score is " + p1Score, Parameter.xStart + 600, Parameter.yStart +100);
+        g.drawString(Parameter.player2 + " score is " + p2Score, Parameter.xStart + 600, Parameter.yStart +150);
 
     }
 
