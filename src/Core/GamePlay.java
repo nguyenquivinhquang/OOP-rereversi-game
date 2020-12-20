@@ -2,11 +2,7 @@ package Core;
 
 import java.util.ArrayList;
 
-class cond {
-    // leftDiagnoal : (1,1) -> (8,8), rightDiagonal (1,8) -> (8,1)
-    public int leftDiagonal = -1, rigthDiagonal = -1, horizontal = -1, vertical = -1;
-    public int x, y;
-}
+
 
 public class GamePlay {
     private final int row = 8;

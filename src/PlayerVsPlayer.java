@@ -70,7 +70,6 @@ public class PlayerVsPlayer extends JPanel {
     }
 
 
-
     private void getRowColumn(int x, int y) {
         int si = (int) (Double.valueOf(Parameter.size) / 8.0);
         this.x = x / si + 1;
@@ -87,20 +86,9 @@ public class PlayerVsPlayer extends JPanel {
     }
     public void actionGame() {
         resetArray();
-//        while (Quyen.equals("Cute")) {
-//            possibleMove = gamePlay.checkPosibleMove(fee, step);
-//            if (gamePlay.arrPosibleMove.size() != 0) {
-//                computeBoard();
-//                graphic.display(board);
-//                press();
-//                gamePlay.flipChess(fee, step, x, y);
-//            } else noMoves();
-//        }
-
-        ///////////////////////////////////////////
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         boardFrame = new RenderChessboard(board);
-//        boardFrame.setBoard(board);
+
         frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Parameter.logo));
         possibleMove = gamePlay.checkPosibleMove(fee, step);
 
@@ -110,8 +98,7 @@ public class PlayerVsPlayer extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
 
-//                possibleMove = gamePlay.checkPosibleMove(fee, step);
-//                boardFrame.setBoard(board);
+
                 if (gamePlay.arrPosibleMove.size() != 0) {
 
                     getRowColumn(e.getX(), e.getY());
