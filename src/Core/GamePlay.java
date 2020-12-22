@@ -1,13 +1,14 @@
 package Core;
 
 import GUI.Coordinate;
+import GUI.Parameter;
 
 import java.util.ArrayList;
 
 
 public class GamePlay {
-    private final int row = 8;
-    private final int column = 8;
+    private final int row = Parameter.row;
+    private final int column = Parameter.column;
     public ArrayList<cond> arrPosibleMove = new ArrayList<>();
 
     public int[][] checkPosibleMove(int[][] check, int player) { // 1: player 1 just moved, 2 player 2 just moved.
@@ -113,11 +114,14 @@ public class GamePlay {
 
     public void flipChess(int[][] check, int player, int x, int y) { //{x,y} current position, player: previous player
         //player = player == 1 ? 2 : 1;
-        goFind(check, player, x + -1, y, -1, 0);
-        goFind(check, player, x - 1, y + -1, -1, -1);
+        goFind(check, player, x - 1, y, -1, 0);
+        goFind(check, player, x - 1, y - 1, -1, -1);
         goFind(check, player, x - 1, y + 1, -1, 1);
+
+
         goFind(check, player, x, y - 1, 0, -1);
         goFind(check, player, x, y + 1, 0, 1);
+
         goFind(check, player, x + 1, y - 1, 1, -1);
         goFind(check, player, x + 1, y, 1, 0);
         goFind(check, player, x + 1, y + 1, 1, 1);
@@ -129,7 +133,6 @@ public class GamePlay {
             for (int j = 1; j <= column; j++)
                 if (board[i][j] == 1 || board[i][j] == 2)
                     count++;
-        System.out.println(count);
         return count == 64;
     }
 

@@ -43,7 +43,7 @@ public class RenderChessboard extends JPanel {
         BufferedImage imageBoard = null, imageBackground = null;
         // get imageBackground
         try {
-            imageBoard = ImageIO.read(new File(Parameter.defaultBoard));
+            imageBoard = ImageIO.read(new File(Parameter.board));
             imageBackground = ImageIO.read(new File(Parameter.background));
         }
         catch (IOException e) {

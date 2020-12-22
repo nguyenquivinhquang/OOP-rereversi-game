@@ -1,12 +1,14 @@
 package Core;
 
+import GUI.Parameter;
+
 import java.util.ArrayList;
 
 
 public class Minimax {
-    private final int row = 8;
-    private final int column = 8;
-    private final int maxDepth = 5;
+    private final int row = Parameter.row;
+    private final int column = Parameter.column;
+    private final int maxDepth = 4;
     private static  int[][] regionScore = RegionScore.getRegionScore();
 
 
@@ -50,7 +52,7 @@ public class Minimax {
         gamePlay.checkPosibleMove(board, 2);
         ArrayList<cond> moveH = new ArrayList<>();
         moveH = gamePlay.arrPosibleMove;
-        System.out.println(moveH.size());
+//        System.out.println(moveH.size());
         cond bestMove = new cond();
         int bestVal = -1000;
         bestMove.x = 100;
