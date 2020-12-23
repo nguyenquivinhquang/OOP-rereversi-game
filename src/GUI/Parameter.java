@@ -1,6 +1,6 @@
 package GUI;
 
-public class a {
+public class Parameter {
     public static int xStart = 100, yStart = 50;
     public static int row = 8, column = 8;
     public static int size = 560;
@@ -23,6 +23,6 @@ public class a {
     public static String candy = path + "\\candy.jpg\\";
     public static String background = path + "\\background.jpg\\";
 
-    public static String player1 = "Quang Cute";
-    public static String player2 = "Quyên Ngốcx";
+    public static String player1 = "PLayer 1";
+    public static String player2 = "Player 2";
 }

@@ -11,7 +11,6 @@ public class PlayervsBot extends PlayerVsPlayer {
         cond temp = move.getOptimalMove(fee, this.x, this.y);
         this.x = temp.x;  this.y = temp.y;
         fee[this.x][this.y] = 2;
-        step = 1;
         System.out.println("bot move: " + this.x + " " + this.y);
     }
     public void actionGame() {
@@ -23,8 +22,10 @@ public class PlayervsBot extends PlayerVsPlayer {
                     getRowColumn(e.getX(), e.getY());
 
                     if (press(x, y) == true) {
+                        System.out.println("step " + step);
                         gamePlay.flipChess(fee, step, x, y);
                         possibleMove = gamePlay.checkPosibleMove(fee, step);
+                        System.out.println("Player move: " + x + " " + y);
                         computeBoard();
                         System.out.println("Score: " + p1Score + " " + p2Score);
                     }
@@ -32,24 +33,22 @@ public class PlayervsBot extends PlayerVsPlayer {
 
                 if (gamePlay.checkEndGame(board) == true ) {
                     winner();
-                    step = step == 1 ? 2 : 1;
                 }
+
                 score = gamePlay.CountPlayerScore(board);
                 p1Score = score.x;  p2Score = score.y;
                 boardFrame.setBoard(stage, p1Score, p2Score, step);
-                step = 2;
+                // step = 2;
 
-                // delay some seconds
-//                try {
-//                    TimeUnit.SECONDS.sleep(3);
-//                } catch (InterruptedException interruptedException) {
-//                    interruptedException.printStackTrace();
-//                }
+
+
                 botThink();
+                gamePlay.flipChess(fee, 1, x, y);
+                possibleMove = gamePlay.checkPosibleMove(fee, 1);
                 computeBoard();
                 score = gamePlay.CountPlayerScore(board);
                 p1Score = score.x;  p2Score = score.y;
-                boardFrame.setBoard(stage, p1Score, p2Score, step);
+                boardFrame.setBoard(stage, p1Score, p2Score, 1);
                 step = 1;
 
             }

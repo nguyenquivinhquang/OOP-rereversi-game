@@ -30,7 +30,7 @@ public class RenderChess extends JPanel {
         g.setColor(Color.magenta);
         g.setFont(new Font("Uni Sans", Font.ITALIC, 20));
         String move = "White";
-        if (step == 2) move = "Black";
+        if (step == 1) move = "Black";
         g.drawString(move + " move's ", Parameter.xStart + 600, Parameter.yStart + 200);
     }
     public void paintChess(Graphics g, ArrayList<Coordinate> board) {

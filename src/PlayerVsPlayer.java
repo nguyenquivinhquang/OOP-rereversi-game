@@ -79,13 +79,16 @@ public class PlayerVsPlayer extends JPanel {
         this.x = (x - Parameter.xStart) / si + 1;
         this.y = (y - Parameter.yStart) / si + 1;
 
-        System.out.println(this.x + " " + this.y);
+//        System.out.println(this.x + " " + this.y);
     }
     protected void winner() {
         if (p1Score > p2Score)
             boardFrame.winner(frame, "Player 1");
         else boardFrame.winner(frame, "Player 2");
         frame.dispose();
+    }
+    protected void running() {
+
     }
     public void actionGame() {
 
@@ -96,16 +99,16 @@ public class PlayerVsPlayer extends JPanel {
                     getRowColumn(e.getX(), e.getY());
 
                     if (press(x, y) == true) {
+                        System.out.println(step);
                         gamePlay.flipChess(fee, step, x, y);
                         possibleMove = gamePlay.checkPosibleMove(fee, step);
                         computeBoard();
-                        System.out.println("Score: " + p1Score + " " + p2Score);
+//                        System.out.println("Score: " + p1Score + " " + p2Score);
                     }
                 } else boardFrame.noMoves(step);
 
                 if (gamePlay.checkEndGame(board) == true ) {
                     winner();
-                    step = step == 1 ? 2 : 1;
                 }
                 score = gamePlay.CountPlayerScore(board);
                 p1Score = score.x;  p2Score = score.y;

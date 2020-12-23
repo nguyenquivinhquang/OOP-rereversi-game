@@ -1,5 +1,4 @@
-
-
+import GUI.Parameter;
 
 /**
  *
@@ -46,7 +45,7 @@ public class Menu extends javax.swing.JFrame {
         titleJLabel.setForeground(new java.awt.Color(255, 51, 102));
         titleJLabel.setText("REVERSI");
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Truc Quyen\\Desktop\\Reversi\\Reversi\\src\\main\\java\\Image\\icons8_computer_40px_1.png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(Parameter.path + "\\Image\\icons8_computer_40px_1.png")); // NOI18N
 
         playervsplayerJButton.setBackground(new java.awt.Color(255, 153, 153));
         playervsplayerJButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -78,19 +77,19 @@ public class Menu extends javax.swing.JFrame {
         guideJButton.setForeground(new java.awt.Color(0, 0, 0));
         guideJButton.setText("How to play?");
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Truc Quyen\\Desktop\\Reversi\\Reversi\\src\\main\\java\\Image\\icons8_person_40px.png")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(Parameter.path + "\\icons8_person_40px.png")); // NOI18N
 
-        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\Truc Quyen\\Desktop\\Reversi\\Reversi\\src\\main\\java\\Image\\icons8_person_40px.png")); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(Parameter.path + "\\icons8_person_40px.png")); // NOI18N
 
-        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\Truc Quyen\\Desktop\\Reversi\\Reversi\\src\\main\\java\\Image\\icons8_person_40px.png")); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(Parameter.path+ "\\icons8_person_40px.png")); // NOI18N
 
-        jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\Truc Quyen\\Desktop\\Reversi\\Reversi\\src\\main\\java\\Image\\icons8_services_40px_2.png")); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(Parameter.path + "\\icons8_services_40px_2.png")); // NOI18N
 
-        jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\Truc Quyen\\Desktop\\Reversi\\Reversi\\src\\main\\java\\Image\\icons8_support_40px_9.png")); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(Parameter.path + "\\icons8_support_40px_9.png")); // NOI18N
 
-        jLabel8.setIcon(new javax.swing.ImageIcon("C:\\Users\\Truc Quyen\\Desktop\\Reversi\\Reversi\\src\\main\\java\\Image\\icons8_question_mark_40px.png")); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(Parameter.path + "\\icons8_question_mark_40px.png")); // NOI18N
 
-        jLabel9.setIcon(new javax.swing.ImageIcon("C:\\Users\\Truc Quyen\\Desktop\\Reversi\\Reversi\\src\\main\\java\\Image\\icons8_question_mark_40px.png")); // NOI18N
+        jLabel9.setIcon(new javax.swing.ImageIcon(Parameter.path + "\\icons8_question_mark_40px.png")); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
