@@ -51,7 +51,7 @@ public class PlayerVsPlayer extends JPanel {
         int check = checkCanMove(x, y);
         if (check != 0) {
             if (check == 3) return false;
-            boardFrame.warning(frame,check);
+            boardFrame.warning(frame, check);
             return false;
         } else fee[x][y] = step;
 
@@ -81,15 +81,18 @@ public class PlayerVsPlayer extends JPanel {
 
 //        System.out.println(this.x + " " + this.y);
     }
+
     protected void winner() {
         if (p1Score > p2Score)
             boardFrame.winner(frame, "Player 1");
         else boardFrame.winner(frame, "Player 2");
         frame.dispose();
     }
+
     protected void running() {
 
     }
+
     public void actionGame() {
 
         boardFrame.addMouseListener(new MouseAdapter() {
@@ -105,34 +108,43 @@ public class PlayerVsPlayer extends JPanel {
                         computeBoard();
 //                        System.out.println("Score: " + p1Score + " " + p2Score);
                     }
-                } else boardFrame.noMoves(step);
+                } else {
+                    boardFrame.noMoves(step);
+                    if (step == 1) step = 2; else step = 1;
+                }
 
-                if (gamePlay.checkEndGame(board) == true ) {
+                if (gamePlay.checkEndGame(board) == true) {
                     winner();
                 }
                 score = gamePlay.CountPlayerScore(board);
-                p1Score = score.x;  p2Score = score.y;
+                p1Score = score.x;
+                p2Score = score.y;
                 boardFrame.setBoard(stage, p1Score, p2Score, step);
             }
         });
     }
+
     public PlayerVsPlayer() {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         boardFrame = new RenderChessboard(stage);
         frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Parameter.logo));
-
+//
         resetArray();
         possibleMove = gamePlay.checkPosibleMove(fee, step);
         computeBoard();
         frame.add(boardFrame);
-
+//        boardFrame.warning(frame, 2);
         actionGame();
-
         frame.setSize(1000, 700);
         frame.setVisible(true);
     }
+
     public static PlayerVsPlayer getInstance() {
         return new PlayerVsPlayer();
+    }
+
+    public static void main(String[] args) {
+        PlayerVsPlayer test = new PlayerVsPlayer();
     }
 
 }
