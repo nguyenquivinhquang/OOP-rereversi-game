@@ -1,9 +1,8 @@
-import GUI.Parameter;
-
 /**
  *
  * @author Truc Quyen
  */
+import GUI.Parameter;
 public class Menu extends javax.swing.JFrame {
 
     /**
