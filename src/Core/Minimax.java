@@ -30,6 +30,7 @@ public class Minimax {
         if (depth == maxDepth || gamePlay.checkEndGame(board))
             return score(board, curPlayer);
 
+        // get position can move
         gamePlay.checkPosibleMove(board, nextPlayer);
         ArrayList<cond> move = gamePlay.arrPosibleMove;
 

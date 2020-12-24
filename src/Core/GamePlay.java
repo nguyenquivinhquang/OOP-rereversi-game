@@ -1,7 +1,7 @@
 package Core;
 
-import GUI.Coordinate;
-import GUI.Parameter;
+import GUI.*;
+
 
 import java.util.ArrayList;
 
@@ -100,7 +100,7 @@ public class GamePlay {
     }
 
     private boolean goFind(int[][] check, int player, int i, int j, int u, int v) {
-        if (i == 0 || i == row || j == 0 || j == column || check[i][j] == -1)
+        if (i == 0 || i > row || j == 0 || j > column || check[i][j] == -1)
             return false;
         if (check[i][j] != player)
             return true;
@@ -113,7 +113,7 @@ public class GamePlay {
     }
 
     public void flipChess(int[][] check, int player, int x, int y) { //{x,y} current position, player: previous player
-        //player = player == 1 ? 2 : 1;
+
         goFind(check, player, x - 1, y, -1, 0);
         goFind(check, player, x - 1, y - 1, -1, -1);
         goFind(check, player, x - 1, y + 1, -1, 1);

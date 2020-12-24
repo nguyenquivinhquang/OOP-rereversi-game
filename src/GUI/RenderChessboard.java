@@ -14,7 +14,7 @@ public class RenderChessboard extends JPanel {
     private  int x, y, p1Score, p2Score;
 
 
-    int column = 8, row = 8, step = 1;
+    int step = 1;
     private ArrayList<Coordinate> board;
 
     public RenderChessboard(int x, int y) {
@@ -41,7 +41,6 @@ public class RenderChessboard extends JPanel {
     public void paintComponent(Graphics g) {
         g.clearRect(0,0, Parameter.size, Parameter.size);
         BufferedImage imageBoard = null, imageBackground = null;
-        // get imageBackground
         try {
             imageBoard = ImageIO.read(new File(Parameter.board));
             imageBackground = ImageIO.read(new File(Parameter.background));
@@ -67,7 +66,7 @@ public class RenderChessboard extends JPanel {
 
         ImageIcon icon = new ImageIcon(Parameter.winner);
         JOptionPane.showMessageDialog(null, "The winner is " + playerWin,
-                "Quyên ngốc ", JOptionPane.INFORMATION_MESSAGE, icon);
+                "Winner yah yah ", JOptionPane.INFORMATION_MESSAGE, icon);
     }
     public void noMoves(int step) {
         String name1 = "Player 1", name2 = "Player 2";
@@ -76,7 +75,7 @@ public class RenderChessboard extends JPanel {
             name2 = "Player 1";
         }
         ImageIcon icon = new ImageIcon(Parameter.cannotMove);
-        JOptionPane.showMessageDialog(null,name1 + " has no move, " + name2 + "'s turn ","You cannot move this turn", JOptionPane.INFORMATION_MESSAGE, icon);
+        JOptionPane.showMessageDialog(null,name1 + " has no move, " + name2 + " 's turn "," You cannot move this turn", JOptionPane.INFORMATION_MESSAGE, icon);
 
     }
 }

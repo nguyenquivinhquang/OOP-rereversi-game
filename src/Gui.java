@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+
 import GUI.*;
 
 import javax.swing.*;
@@ -13,7 +14,6 @@ public class Gui extends JPanel {
     JFrame frame = new JFrame("Reversi");
 
     public Gui() {
-
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         RenderChessboard board = new RenderChessboard(x, y);

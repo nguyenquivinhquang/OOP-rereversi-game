@@ -1,3 +1,4 @@
+import GUI.Parameter;
 import MenuComponent.PlayerNames;
 
 /**
@@ -82,19 +83,19 @@ public class MenuView extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\Truc Quyen\\Desktop\\Reversi\\Reversi\\src\\main\\java\\Image\\icons8_person_40px.png")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(Parameter.path + "\\icons8_person_40px.png")); // NOI18N
 
-        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\Truc Quyen\\Desktop\\Reversi\\Reversi\\src\\main\\java\\Image\\icons8_person_40px.png")); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(Parameter.path + "\\icons8_person_40px.png")); // NOI18N
 
-        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\Truc Quyen\\Desktop\\Reversi\\Reversi\\src\\main\\java\\Image\\icons8_person_40px.png")); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(Parameter.path+ "\\icons8_person_40px.png")); // NOI18N
 
-        jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\Truc Quyen\\Desktop\\Reversi\\Reversi\\src\\main\\java\\Image\\icons8_services_40px_2.png")); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(Parameter.path + "\\icons8_services_40px_2.png")); // NOI18N
 
-        jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\Truc Quyen\\Desktop\\Reversi\\Reversi\\src\\main\\java\\Image\\icons8_support_40px_9.png")); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(Parameter.path + "\\icons8_support_40px_9.png")); // NOI18N
 
-        jLabel8.setIcon(new javax.swing.ImageIcon("C:\\Users\\Truc Quyen\\Desktop\\Reversi\\Reversi\\src\\main\\java\\Image\\icons8_question_mark_40px.png")); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(Parameter.path + "\\icons8_question_mark_40px.png")); // NOI18N
 
-        jLabel9.setIcon(new javax.swing.ImageIcon("C:\\Users\\Truc Quyen\\Desktop\\Reversi\\Reversi\\src\\main\\java\\Image\\icons8_question_mark_40px.png")); // NOI18N
+        jLabel9.setIcon(new javax.swing.ImageIcon(Parameter.path + "\\icons8_question_mark_40px.png")); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -188,30 +189,7 @@ public class MenuView extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        System.out.println("quyen ngoc");
-        /* Create and display the form */
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MenuView().setVisible(true);
