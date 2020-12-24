@@ -1,7 +1,6 @@
 import Core.GamePlay;
-import GUI.Coordinate;
-import GUI.Parameter;
-import GUI.RenderChessboard;
+import GUI.*;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,7 +13,7 @@ public class PlayerVsPlayer extends JPanel {
     int column = 8, row = 8, step = 1;
     int x, y, p1Score = 2, p2Score = 2;
 
-    public int[][] fee = new int[row + 2][column + 2];
+    public int[][] boardStage = new int[row + 2][column + 2];
     int[][] possibleMove = new int[row + 2][column + 2];
     int[][] board = new int[row + 2][column + 2];
 
@@ -29,31 +28,25 @@ public class PlayerVsPlayer extends JPanel {
     private void resetArray() {
         for (int i = 0; i <= row; i++)
             for (int j = 0; j <= column; j++)
-                fee[i][j] = -1;
+                boardStage[i][j] = -1;
 
-        fee[4][4] = 2;
-        fee[4][5] = 1;
-        fee[5][4] = 1;
-        fee[5][5] = 2;
+        boardStage[4][4] = 2;
+        boardStage[4][5] = 1;
+        boardStage[5][4] = 1;
+        boardStage[5][5] = 2;
     }
 
-    protected int checkCanMove(int x, int y) {
-        if (x > 8 || y > 8) return 3;
-        if (fee[x][y] != -1)
-            return 1;
-        if (possibleMove[x][y] != 1)
-            return 2;
-        return 0;
+    protected Boolean checkCanMove(int x, int y) { // this function check if (x,y) is in the board or can move
+        if (x > 8 || y > 8 || x < 1 || y < 1) return false;
+
+        return boardStage[x][y] == -1 && possibleMove[x][y] == 1;
     }
 
     public Boolean press(int x, int y) {
 
-        int check = checkCanMove(x, y);
-        if (check != 0) {
-            if (check == 3) return false;
-            boardFrame.warning(frame, check);
+        if (!checkCanMove(x, y)) {
             return false;
-        } else fee[x][y] = step;
+        } else boardStage[x][y] = step;
 
         this.x = x;
         this.y = y;
@@ -67,8 +60,8 @@ public class PlayerVsPlayer extends JPanel {
         for (int i = 1; i <= row; i++)
             for (int j = 1; j <= column; j++) {
                 board[i][j] = -1;
-                board[i][j] = fee[i][j];
-                if (fee[i][j] == -1 && possibleMove[i][j] == 1) board[i][j] = 3;
+                board[i][j] = boardStage[i][j];
+                if (boardStage[i][j] == -1 && possibleMove[i][j] == 1) board[i][j] = 3;
                 if (board[i][j] != -1) stage.add(new Coordinate(i, j, board[i][j]));
             }
 
@@ -79,7 +72,6 @@ public class PlayerVsPlayer extends JPanel {
         this.x = (x - Parameter.xStart) / si + 1;
         this.y = (y - Parameter.yStart) / si + 1;
 
-//        System.out.println(this.x + " " + this.y);
     }
 
     protected void winner() {
@@ -89,51 +81,60 @@ public class PlayerVsPlayer extends JPanel {
         frame.dispose();
     }
 
-    protected void running() {
+    protected void debug() {
+        System.out.println("Step " + step );
+        for (int i = 1; i <= row; i++) {
+            for (int j = 1; j <= column; j++) {
+                int temp = boardStage[i][j];
+                if (temp == -1) temp = 0;
+                System.out.print(temp + " ");
+            }
+            System.out.println();
+        }
+        System.out.println();
+    }
+    public void stepDoing() {
 
     }
-
     public void actionGame() {
-
         boardFrame.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (gamePlay.arrPosibleMove.size() != 0) {
                     getRowColumn(e.getX(), e.getY());
-
                     if (press(x, y) == true) {
-                        System.out.println(step);
-                        gamePlay.flipChess(fee, step, x, y);
-                        possibleMove = gamePlay.checkPosibleMove(fee, step);
+                        gamePlay.flipChess(boardStage, step, x, y);
+                        possibleMove = gamePlay.checkPosibleMove(boardStage, step);
                         computeBoard();
-//                        System.out.println("Score: " + p1Score + " " + p2Score);
                     }
                 } else {
                     boardFrame.noMoves(step);
-                    if (step == 1) step = 2; else step = 1;
+                    if (step == 1) step = 2;
+                    else step = 1;
                 }
 
-                if (gamePlay.checkEndGame(board) == true) {
-                    winner();
-                }
+                debug();
+                if (gamePlay.checkEndGame(board) == true) winner();
+
                 score = gamePlay.CountPlayerScore(board);
                 p1Score = score.x;
                 p2Score = score.y;
                 boardFrame.setBoard(stage, p1Score, p2Score, step);
             }
         });
+
     }
 
     public PlayerVsPlayer() {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         boardFrame = new RenderChessboard(stage);
         frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Parameter.logo));
-//
+
         resetArray();
-        possibleMove = gamePlay.checkPosibleMove(fee, step);
+        possibleMove = gamePlay.checkPosibleMove(boardStage, step);
         computeBoard();
         frame.add(boardFrame);
-//        boardFrame.warning(frame, 2);
+
         actionGame();
         frame.setSize(1000, 700);
         frame.setVisible(true);
