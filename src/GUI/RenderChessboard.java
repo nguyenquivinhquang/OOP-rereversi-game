@@ -39,7 +39,7 @@ public class RenderChessboard extends JPanel {
         this.step = step;
     }
     public void paintComponent(Graphics g) {
-        g.clearRect(0,0,Parameter.size, Parameter.size);
+        g.clearRect(0,0, Parameter.size, Parameter.size);
         BufferedImage imageBoard = null, imageBackground = null;
         // get imageBackground
         try {
@@ -50,7 +50,7 @@ public class RenderChessboard extends JPanel {
             e.printStackTrace();
         }
         g.drawImage(imageBackground, 0, 0,1000, 700, null);
-        g.drawImage(imageBoard, Parameter.xStart, Parameter.yStart,Parameter.size, Parameter.size, null);
+        g.drawImage(imageBoard, Parameter.xStart, Parameter.yStart, Parameter.size, Parameter.size, null);
 
         RenderChess chess = new RenderChess(x, y);
 
@@ -62,15 +62,6 @@ public class RenderChessboard extends JPanel {
 
 
     }
-
-    public void warning(JFrame frame, int check) {
-        String command = "This is not a valid move, press again: ";
-        if (check == 1)
-            command = "This move already had, press again: ";
-
-        JOptionPane.showMessageDialog(frame, command);
-    }
-
 
     public void winner(JFrame frame, String playerWin) {
 

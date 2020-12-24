@@ -32,6 +32,7 @@ public class RenderChess extends JPanel {
         String move = "White";
         if (step == 1) move = "Black";
         g.drawString(move + " move's ", Parameter.xStart + 600, Parameter.yStart + 200);
+
     }
     public void paintChess(Graphics g, ArrayList<Coordinate> board) {
         BufferedImage player1Image = null, player2Image = null, suggestImage = null;
