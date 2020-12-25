@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Minimax {
     private final int row = Parameter.row;
     private final int column = Parameter.column;
-    private final int maxDepth = 4;
+    private final int maxDepth = 6;
     private static  int[][] regionScore = RegionScore.getRegionScore();
 
 
@@ -37,7 +37,7 @@ public class Minimax {
         if (move.size() == 0)
             return decision(depth + 1, board, nextPlayer);
         int bestmove;
-        bestmove = curPlayer == 2 ? 1000 : -1000;
+        bestmove = curPlayer == 2 ? 10000 : -10000;
         for (cond v : move) {
             int val = decision(depth + 1, copyBoard(board, gamePlay, v.x, v.y, nextPlayer), nextPlayer);
             if (curPlayer == 2)
@@ -55,9 +55,9 @@ public class Minimax {
         moveH = gamePlay.arrPosibleMove;
 //        System.out.println(moveH.size());
         cond bestMove = new cond();
-        int bestVal = -1000;
-        bestMove.x = 100;
-        bestMove.y = 100;
+        int bestVal = -10000;
+        bestMove.x = 1000;
+        bestMove.y = 1000;
         for (cond v : moveH) {
             int val = decision(2, copyBoard(board, gamePlay, v.x, v.y, 2), 2);
             if (val > bestVal) {

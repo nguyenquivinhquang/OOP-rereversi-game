@@ -6,14 +6,14 @@ public class RegionScore {
     private static int[][] regionScore = new int[row + 2][column + 2];
 
     private static void setRegionScore() {
-        regionScore[1][1] = 500;
+        regionScore[1][1] = 1500;
         regionScore[1][2] = -50;
         regionScore[1][3] = 70;
         regionScore[1][4] = 70;
         regionScore[1][5] = 70;
         regionScore[1][6] = 70;
         regionScore[1][7] = -50;
-        regionScore[1][8] = 500;
+        regionScore[1][8] = 1500;
         regionScore[2][1] = -50;
         regionScore[2][2] = -50;
         regionScore[2][3] = -30;
@@ -62,14 +62,14 @@ public class RegionScore {
         regionScore[7][6] = -30;
         regionScore[7][7] = -50;
         regionScore[7][8] = -50;
-        regionScore[8][1] = 500;
+        regionScore[8][1] = 1500;
         regionScore[8][2] = -50;
         regionScore[8][3] = 70;
         regionScore[8][4] = 70;
         regionScore[8][5] = 70;
         regionScore[8][6] = 70;
         regionScore[8][7] = -50;
-        regionScore[8][8] = 500;
+        regionScore[8][8] = 1500;
     }
 
     public static int[][] getRegionScore() {
