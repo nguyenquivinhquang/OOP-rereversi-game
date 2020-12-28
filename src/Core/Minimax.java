@@ -3,12 +3,13 @@ package Core;
 import GUI.Parameter;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 
 public class Minimax {
     private final int row = Parameter.row;
     private final int column = Parameter.column;
-    private final int maxDepth = 6;
+    private final int maxDepth =6;
     private static  int[][] regionScore = RegionScore.getRegionScore();
 
 
@@ -38,11 +39,13 @@ public class Minimax {
             return decision(depth + 1, board, nextPlayer);
         int bestmove;
         bestmove = curPlayer == 2 ? 10000 : -10000;
+        Random rand = new Random();
         for (cond v : move) {
+            int t = rand.nextInt(1000);
             int val = decision(depth + 1, copyBoard(board, gamePlay, v.x, v.y, nextPlayer), nextPlayer);
             if (curPlayer == 2)
-                bestmove = val < bestmove ? val : bestmove;
-            else bestmove = val > bestmove ? val : bestmove;
+                bestmove = val < bestmove || (val == bestmove && t % 2 ==0) ? val : bestmove;
+            else bestmove = val > bestmove || (val == bestmove && t % 2 ==0) ? val : bestmove;
         }
         return bestmove;
     }
@@ -53,14 +56,16 @@ public class Minimax {
         gamePlay.checkPosibleMove(board, 2);
         ArrayList<cond> moveH = new ArrayList<>();
         moveH = gamePlay.arrPosibleMove;
-//        System.out.println(moveH.size());
+
         cond bestMove = new cond();
         int bestVal = -10000;
         bestMove.x = 1000;
         bestMove.y = 1000;
+        Random rand = new Random();
         for (cond v : moveH) {
+            int t  =  rand.nextInt(1000);
             int val = decision(2, copyBoard(board, gamePlay, v.x, v.y, 2), 2);
-            if (val > bestVal) {
+            if ((val > bestVal ) || ( val == bestVal && t % 2 == 0)) {
                 bestMove.x = v.x;
                 bestMove.y = v.y;
                 bestVal = val;
