@@ -46,7 +46,7 @@ public class MenuView extends javax.swing.JFrame {
         titleJLabel.setForeground(new java.awt.Color(255, 51, 102));
         titleJLabel.setText("REVERSI");
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\Truc Quyen\\Desktop\\Reversi\\Reversi\\src\\main\\java\\Image\\icons8_computer_40px_1.png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(Parameter.path + "\\icons8_person_40px.png")); // NOI18N
 
         playervsplayerJButton.setBackground(new java.awt.Color(255, 153, 153));
         playervsplayerJButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N

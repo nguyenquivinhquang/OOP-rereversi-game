@@ -13,8 +13,7 @@ public class ConsoleGui {
         System.out.println("Press x,y to move: ");
         cond temp = new cond();
         temp.x = myObj.nextInt();
-        temp.y = myObj.nextInt();
-        return temp;
+        temp.y = myObj.nextInt();        return temp;
     }
 
     public void warning(int cond) {
