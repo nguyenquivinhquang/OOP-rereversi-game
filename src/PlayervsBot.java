@@ -1,10 +1,9 @@
 import Core.*;
 
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-
 
 public class PlayervsBot extends PlayerVsPlayer {
+    private static PlayervsBot instance = null;
+
     private void botThink() {
         Minimax move = Minimax.getInstance();
         cond temp = move.getOptimalMove(boardStage, this.x, this.y);
@@ -14,44 +13,31 @@ public class PlayervsBot extends PlayerVsPlayer {
 
     }
 
-    public void actionGame() {
-
-        boardFrame.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                for (int i = 1; i <= 2; i++) {
-                    if (gamePlay.arrPosibleMove.size() != 0) {
-                        getRowColumn(e.getX(), e.getY());
-                        if (step == 2) botThink();
-                        if (press(x, y) == true) {
-                            System.out.println(step);
-                            gamePlay.flipChess(boardStage, step, x, y);
-
-                        }
-                    } else {
-                        boardFrame.noMoves(step);
-                        step = 1;
-                    }
-                    possibleMove = gamePlay.checkPosibleMove(boardStage, step);
-                    computeBoard();
-                    if (gamePlay.checkEndGame(board) == true) {
-                        winner();
-                    }
-                    score = gamePlay.CountPlayerScore(board);
-                    p1Score = score.x;
-                    p2Score = score.y;
-                    boardFrame.setBoard(stage, p1Score, p2Score, step);
-                }
+    public void press() {
+        if (step == 2) botThink();
+        else
+            while (!checkCanMove(x, y)) {
             }
-        });
+        boardStage[x][y] = step;
+        this.x = x;
+        this.y = y;
+        step = step == 1 ? 2 : 1;
+
     }
 
-    public PlayervsBot() {
+    public PlayervsBot()  {
         super();
     }
 
     public static PlayervsBot getInstance() {
-        return new PlayervsBot();
+        if (instance == null)
+                instance =  new PlayervsBot();
+        return instance;
     }
 
+    public static void main(String[] args) {
+        PlayervsBot playervsBot = PlayervsBot.getInstance();
+        playervsBot.actionGame();
+
+    }
 }
