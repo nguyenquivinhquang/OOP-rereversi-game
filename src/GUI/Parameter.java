@@ -6,7 +6,7 @@ public class Parameter {
     public static int size = 560;
     public static int stepSize = size / row, width = size / row, height = size / row;
 //    public static String path = "E:\\java\\OOP-rereversi-game\\src\\Image";
-    public static String path = "src\\Image";
+    public static String path = "Image";
     public static String board = path + "\\board.png\\";
     public static String grayBoard = path + "\\grayBoard.png\\";
     public static String greenBoard = path + "\\greenBoard.png\\";
