@@ -15,9 +15,7 @@ public class PlayingAudioFileTest {
     public PlayingAudioFileTest() {
         try {
             musicInput = AudioSystem.getAudioInputStream(new File(filePath).getAbsoluteFile());
-        } catch (UnsupportedAudioFileException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (UnsupportedAudioFileException | IOException e) {
             e.printStackTrace();
         }
         try {
@@ -27,9 +25,7 @@ public class PlayingAudioFileTest {
         }
         try {
             music.open(musicInput);
-        } catch (LineUnavailableException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (LineUnavailableException | IOException e) {
             e.printStackTrace();
         }
         music.loop(Clip.LOOP_CONTINUOUSLY);
@@ -46,7 +42,7 @@ public class PlayingAudioFileTest {
         music.stop();
     }
 
-    public void resumeMusic() throws UnsupportedAudioFileException, IOException, LineUnavailableException {
+    public void resumeMusic()  {
 
         music.setMicrosecondPosition(musicCurrentTime);
         this.playMusic();
