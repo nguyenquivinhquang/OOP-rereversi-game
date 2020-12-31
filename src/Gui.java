@@ -1,16 +1,14 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-
 import Audio.PlayingAudioFileTest;
+import Core.*;
 import GUI.*;
-public class Gui extends JFrame {
-    public Timer t_game;
 
-    ArrayList<Coordinate> coor = new ArrayList<Coordinate>();
-    Render render;
-//    PlayerVsPlayer playerVsPlayer = PlayerVsPlayer.getInstance();
+public class Gui extends JFrame {
+
+
+    PlayerVsPlayer playerVsPlayer = PlayerVsPlayer.getInstance();
+    PlayervsBot playervsBot = PlayervsBot.getInstance();
 
     PlayingAudioFileTest music;
 
@@ -26,22 +24,29 @@ public class Gui extends JFrame {
     public Gui() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setIconImage(Toolkit.getDefaultToolkit().getImage(Parameter.logo));
+        setTitle("Reversi");
 
-        render = new Render();
-//        music = new PlayingAudioFileTest();
-//        playerVsPlayer = PlayerVsPlayer.getInstance();
-//        render.addMouseListener(playerVsPlayer);
-//        frame.add(render);
-//        frame.removeMouseListener(playerVsPlayer);
+        music = new PlayingAudioFileTest();
+
         setMenu();
         this.setSize(1000, 700);
         this.setVisible(true);
-    }
+}
 
+    public void startPlayervsPlayer() {
+        this.add(playerVsPlayer.render);
+        playerVsPlayer.actionGame();
+        playerVsPlayer.render.repaint();
+    }
+    public void startPlayervsBot() {
+        this.add(playervsBot);
+        playervsBot.actionGame();
+    }
     public void newGameAction() {
         newGameJMenu.addActionListener(e -> {
-//            playerVsPlayer.resetArray();
+            playerVsPlayer.resetArray();
             music.resumeMusic();
+            System.out.println("new Game");
         });
     }
 
@@ -65,13 +70,9 @@ public class Gui extends JFrame {
     }
 
 
-
-
-
-
-
     public static void main(String[] args) {
         Gui gui = new Gui();
+        gui.startPlayervsPlayer();
 
     }
 }
