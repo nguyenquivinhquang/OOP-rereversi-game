@@ -36,8 +36,9 @@ public class Gui extends JFrame {
     public void startPlayervsPlayer() {
         this.add(playerVsPlayer.render);
         playerVsPlayer.actionGame();
-        playerVsPlayer.render.repaint();
+//        playerVsPlayer.render.repaint();
     }
+
     public void startPlayervsBot() {
         this.add(playervsBot);
         playervsBot.actionGame();
@@ -45,6 +46,7 @@ public class Gui extends JFrame {
     public void newGameAction() {
         newGameJMenu.addActionListener(e -> {
             playerVsPlayer.resetArray();
+            playerVsPlayer.render.repaint();
             music.resumeMusic();
             System.out.println("new Game");
         });
