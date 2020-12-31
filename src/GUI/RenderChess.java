@@ -56,8 +56,6 @@ public class RenderChess {
             g.drawImage(image, Parameter.xStart + Parameter.stepSize * x,
                     Parameter.yStart + Parameter.stepSize * y, Parameter.width, Parameter.height, null);
 
-//            repaint();
-//            TimeUnit.MILLISECONDS.sleep(10);
         }
 
     }
@@ -68,4 +66,6 @@ public class RenderChess {
         }
         return instance;
     }
+
+
 }
