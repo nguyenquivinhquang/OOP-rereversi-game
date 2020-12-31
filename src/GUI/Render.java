@@ -3,6 +3,7 @@ package GUI;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Timer;
 
 public class Render extends JPanel {
     private int x, y, p1Score, p2Score;
