@@ -16,3 +16,4 @@ out/production/
 out/
 *.class
 out/production/OOP-rereversi-game/Gui.class
+*.class
