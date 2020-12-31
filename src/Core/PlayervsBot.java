@@ -1,4 +1,6 @@
-import Core.*;
+package Core;
+
+import java.util.concurrent.TimeUnit;
 
 
 public class PlayervsBot extends PlayerVsPlayer {
@@ -14,8 +16,14 @@ public class PlayervsBot extends PlayerVsPlayer {
     }
 
     public void press() {
-        if (step == 2) botThink();
-        else
+        if (step == 2) {
+            try {
+                TimeUnit.SECONDS.sleep(1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            botThink();
+        } else
             while (!checkCanMove(x, y)) {
             }
         boardStage[x][y] = step;
@@ -25,13 +33,13 @@ public class PlayervsBot extends PlayerVsPlayer {
 
     }
 
-    public PlayervsBot()  {
+    public PlayervsBot() {
         super();
     }
 
     public static PlayervsBot getInstance() {
         if (instance == null)
-                instance =  new PlayervsBot();
+            instance = new PlayervsBot();
         return instance;
     }
 

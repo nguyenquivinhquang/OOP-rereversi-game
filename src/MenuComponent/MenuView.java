@@ -1,5 +1,6 @@
+package MenuComponent;
+
 import GUI.Parameter;
-import MenuComponent.PlayerNames;
 
 /**
  *
@@ -35,7 +36,7 @@ public class MenuView extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-
+        
         jScrollPane1.setViewportView(jEditorPane1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
