@@ -2,7 +2,8 @@
 package MenuComponent;
 
 import GUI.Parameter;
-
+import Core.*;
+import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
@@ -15,10 +16,12 @@ public class PlayerNames extends javax.swing.JFrame {
     /**
      * Creates new form Options
      */
+    public Boolean checkCLose = false;
     public String pn1, pn2;
     public PlayerNames() {
         initComponents();
-        this.setTitle("Reversi");
+        setIconImage(Toolkit.getDefaultToolkit().getImage(Parameter.logo));
+        setTitle("Reversi");
         setVisible(true);
         
     }
@@ -114,9 +117,9 @@ public class PlayerNames extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\Truc Quyen\\Desktop\\Reversi\\Reversi\\src\\main\\java\\Image\\icons8_autograph_20px_1.png")); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(Parameter.path + "\\icons8_autograph_20px_1.png")); // NOI18N
 
-        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\Truc Quyen\\Desktop\\Reversi\\Reversi\\src\\main\\java\\Image\\icons8_autograph_20px_1.png")); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(Parameter.path + "\\icons8_autograph_20px_1.png")); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -199,6 +202,8 @@ public class PlayerNames extends javax.swing.JFrame {
         Parameter.player1 = pn1;
         Parameter.player2 = pn2;
         this.dispose();
+        PlayerVsPlayer playerVsPlayer = PlayerVsPlayer.getInstance();
+        playerVsPlayer.actionGame();
     }
 
     /**

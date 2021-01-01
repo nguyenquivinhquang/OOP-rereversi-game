@@ -1,6 +1,9 @@
 package MenuComponent;
 
-import GUI.Parameter;
+import java.awt.*;
+
+import Core.PlayerVsPlayer;
+import GUI.*;
 
 /**
  *
@@ -13,7 +16,8 @@ public class MenuView extends javax.swing.JFrame {
      */
     public MenuView() {
         initComponents();
-        Seticon();
+        setTitle("Reversi");
+        setIconImage(Toolkit.getDefaultToolkit().getImage(Parameter.logo));
     }
 
     
@@ -65,6 +69,12 @@ public class MenuView extends javax.swing.JFrame {
         playervspcJButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         playervspcJButton.setForeground(new java.awt.Color(0, 0, 0));
         playervspcJButton.setText("Player vs PC");
+        playervspcJButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                playervspcJButtonActionPerformed(evt);
+            }
+        });
+
 
         optionsJButton.setBackground(new java.awt.Color(255, 153, 153));
         optionsJButton.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -186,17 +196,25 @@ public class MenuView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void playervsplayerJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playervsplayerJButtonActionPerformed
-        // TODO add your handling code here:
+    private void playervsplayerJButtonActionPerformed(java.awt.event.ActionEvent evt) {
         PlayerNames playerNames = new PlayerNames();
+
+        if (playerNames.checkCLose == true) {
+            PlayerVsPlayer playerVsPlayer = PlayerVsPlayer.getInstance();
+            playerVsPlayer.actionGame();
+        }
     }//GEN-LAST:event_playervsplayerJButtonActionPerformed
 
-    private void optionsJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optionsJButtonActionPerformed
-        // TODO add your handling code here:
+    private void optionsJButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        Options options = new Options();
     }//GEN-LAST:event_optionsJButtonActionPerformed
 
-    private void guideJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guideJButtonActionPerformed
-        // TODO add your handling code here:
+    private void playervspcJButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        Rules rule = new Rules();
+     }//GEN-LAST:event_guideJButtonActionPerformed
+
+    private void guideJButtonActionPerformed(java.awt.event.ActionEvent evt) {
+       Rules rule = new Rules();
     }//GEN-LAST:event_guideJButtonActionPerformed
 
     /**
@@ -254,8 +272,5 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JLabel titleJLabel;
     // End of variables declaration//GEN-END:variables
 
-    private void Seticon() {
-//        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("Logo.png")));
-        
-    }
+    
 }
