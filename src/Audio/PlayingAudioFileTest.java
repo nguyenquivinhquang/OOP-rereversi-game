@@ -13,7 +13,7 @@ public class PlayingAudioFileTest {
 
     AudioInputStream musicInput;
     public static String filePath = Parameter.music;
-
+    private static PlayingAudioFileTest instance = null;
     public PlayingAudioFileTest() {
         try {
             musicInput = AudioSystem.getAudioInputStream(new File(filePath).getAbsoluteFile());
@@ -44,5 +44,11 @@ public class PlayingAudioFileTest {
         music.setMicrosecondPosition(musicCurrentTime);
         this.playMusic();
     }
-
+    public void extMusic() {
+        music.stop();
+    }
+    public static PlayingAudioFileTest getInstance() {
+        if (instance == null) instance = new PlayingAudioFileTest();
+        return instance;
+    }
 }
