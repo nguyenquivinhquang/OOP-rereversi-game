@@ -1,8 +1,10 @@
 
 package MenuComponent;
 
-import GUI.Parameter;
-import Core.*;
+import Core.PlayerVsPlayer;
+import GUI.*;
+
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
@@ -11,7 +13,7 @@ import java.awt.event.FocusListener;
  *
  * @author Truc Quyen
  */
-public class PlayerNames extends javax.swing.JFrame {
+public class PlayerNames extends JFrame {
 
     /**
      * Creates new form Options
@@ -19,10 +21,11 @@ public class PlayerNames extends javax.swing.JFrame {
     public Boolean checkCLose = false;
     public String pn1, pn2;
     public PlayerNames() {
-        initComponents();
+
         setIconImage(Toolkit.getDefaultToolkit().getImage(Parameter.logo));
-        setTitle("Reversi");
-        setVisible(true);
+        setTitle("Reversi PlayerInput");
+        initComponents();
+//        setVisible(true);
         
     }
 
@@ -195,15 +198,15 @@ public class PlayerNames extends javax.swing.JFrame {
            name1JTextField.setText("");
     }//GEN-LAST:event_name1JTextFieldActionPerformed
 
-    private void saveJbuttonActionPerformed(java.awt.event.ActionEvent evt) {
+    public void saveJbuttonActionPerformed(java.awt.event.ActionEvent evt) {
         pn1 = name1JTextField.getText();
         pn2 = name2JTextField.getText();
         System.out.println(pn1);
         Parameter.player1 = pn1;
         Parameter.player2 = pn2;
-        this.dispose();
-        PlayerVsPlayer playerVsPlayer = PlayerVsPlayer.getInstance();
-        playerVsPlayer.actionGame();
+//        this.dispose();
+        checkCLose = true;
+        System.out.println(true);
     }
 
     /**

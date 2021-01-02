@@ -129,7 +129,7 @@ public class PlayerVsPlayer extends JPanel {
 
     public PlayerVsPlayer() {
 
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         render = new Render(stage);
 
@@ -137,8 +137,8 @@ public class PlayerVsPlayer extends JPanel {
         possibleMove = gamePlay.checkPosibleMove(boardStage, step);
         computeBoard();
         getXY();
-        frame.add(render);
-
+//        frame.add(render);
+//        frame.setVisible(true);
     }
 
 

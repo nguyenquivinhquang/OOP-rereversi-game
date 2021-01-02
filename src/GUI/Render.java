@@ -9,8 +9,8 @@ public class Render extends JPanel {
     private int x, y, p1Score, p2Score;
     int step = 1;
     private ArrayList<Coordinate> board;
-    RenderBoard renderBoard;
-    RenderChess renderChess;
+    public RenderBoard renderBoard;
+    public RenderChess renderChess;
 
     public Render() {
         renderBoard = RenderBoard.instance();

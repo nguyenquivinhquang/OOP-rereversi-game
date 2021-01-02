@@ -76,9 +76,13 @@ public class Gui extends JFrame {
         musicMenu.add(stopMusic);
     }
 
-    public static void newGame() {
+    public static void newGamePlayervsPlayer() {
         Gui gui = new Gui();
         gui.startPlayervsPlayer();
+    }
+    public static void newGamePlayervsBot() {
+        Gui gui = new Gui();
+        gui.startPlayervsBot();
     }
     public static void main(String[] args) {
         Gui gui = new Gui();
