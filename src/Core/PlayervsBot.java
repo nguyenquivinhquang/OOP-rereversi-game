@@ -42,10 +42,4 @@ public class PlayervsBot extends PlayerVsPlayer {
             instance = new PlayervsBot();
         return instance;
     }
-
-    public static void main(String[] args) {
-        PlayervsBot playervsBot = PlayervsBot.getInstance();
-        playervsBot.actionGame();
-
-    }
 }

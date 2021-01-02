@@ -7,13 +7,15 @@ import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class PlayerVsPlayer extends JPanel {
     ArrayList<Coordinate> stage = new ArrayList<>();
     private static PlayerVsPlayer instance = null;
     int column = 8, row = 8, step = 1;
     int x, y, p1Score = 2, p2Score = 2;
-
+    boolean endGame = false;
     public int[][] boardStage = new int[row + 2][column + 2];
     int[][] possibleMove;
     int[][] board = new int[row + 2][column + 2];
@@ -35,6 +37,7 @@ public class PlayerVsPlayer extends JPanel {
         boardStage[5][5] = 2;
         p1Score = p2Score = 2;
         step = 1;
+        endGame = false;
     }
 
     protected Boolean checkCanMove(int x, int y) { // this function check if (x,y) is in the board or can move
@@ -77,43 +80,27 @@ public class PlayerVsPlayer extends JPanel {
         frame.dispose();
     }
 
-    protected void debug() {
-        System.out.println("Step " + step);
-        for (int i = 1; i <= row; i++) {
-            for (int j = 1; j <= column; j++) {
-                int temp = boardStage[j][i];
-                if (temp == -1) temp = 0;
-                System.out.print(temp + " ");
-            }
-            System.out.println();
-        }
-        System.out.println();
-    }
-
     public void actionGame() {
-        while (1 != 0) {
-            if (gamePlay.arrPosibleMove.size() != 0) {
-                press(); // get is function to get player move
-                gamePlay.flipChess(boardStage, step, x, y);
+        if (gamePlay.arrPosibleMove.size() != 0) {
+            press(); // get is function to get player move
+            gamePlay.flipChess(boardStage, step, x, y);
 
-            } else {
-                render.noMoves(step);
-                if (step == 1) step = 2;
-                else step = 1;
-            }
-            possibleMove = gamePlay.checkPosibleMove(boardStage, step);
-            computeBoard();
-            debug();
-            if (gamePlay.checkEndGame(board)) {
-                winner();
-                break;
-            }
+        } else {
+            render.noMoves(step);
+            if (step == 1) step = 2;
+            else step = 1;
+        }
+        possibleMove = gamePlay.checkPosibleMove(boardStage, step);
+        computeBoard();
 
-            score = gamePlay.CountPlayerScore(board);
-            p1Score = score.x;
-            p2Score = score.y;
-            render.setBoard(stage, p1Score, p2Score, step);
-
+        score = gamePlay.CountPlayerScore(board);
+        p1Score = score.x;
+        p2Score = score.y;
+        render.setBoard(stage, p1Score, p2Score, step);
+        if (gamePlay.checkEndGame(board)) {
+            winner();
+            endGame = true;
+            return;
         }
     }
 
@@ -127,18 +114,19 @@ public class PlayerVsPlayer extends JPanel {
 
     }
 
-    public PlayerVsPlayer() {
-
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        render = new Render(stage);
-
+    public void newGame() {
         resetArray();
+        render.step = 1;
+        render.repaint();
         possibleMove = gamePlay.checkPosibleMove(boardStage, step);
         computeBoard();
         getXY();
-//        frame.add(render);
-//        frame.setVisible(true);
+
+    }
+
+    public PlayerVsPlayer() {
+        render = new Render(stage);
+        newGame();
     }
 
 
@@ -148,9 +136,22 @@ public class PlayerVsPlayer extends JPanel {
         return instance;
     }
 
+    public void running() {
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                if (endGame == true) return;
+                actionGame();
+            }
+        };
+        Timer timer = new Timer("Timer");
+        timer.schedule(timerTask, 100, 1);
+
+    }
+
     public static void main(String[] args) {
         PlayerVsPlayer playerVsPlayer = PlayerVsPlayer.getInstance();
-        playerVsPlayer.actionGame();
+        playerVsPlayer.running();
     }
 
 }
