@@ -16,7 +16,7 @@ public class Parameter {
     public static String whiteChess = path + "\\whiteChess.png\\";
     public static String blackChess = path + "\\blackChess.png\\";
 
-    public static String winner = path + "\\chickenShake.gif\\";
+    public static String winner = path + "\\Winner-Othello.gif\\";
     public static String suggest = path + "\\Suggestions.png\\";
     public static String logo = path + "\\Logo.png\\";
     public static String cannotMove = path + "\\cannotMove.gif\\";
