@@ -71,7 +71,7 @@ public class PlayerNames extends JFrame {
 
         name1JTextField.setBackground(new java.awt.Color(255, 204, 204));
         name1JTextField.setForeground(new java.awt.Color(0, 0, 0));
-        name1JTextField.setText("     Input Player 1 name's:    ");
+        name1JTextField.setText("     Player 1    ");
         name1JTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 name1JTextFieldActionPerformed(evt);
@@ -82,32 +82,32 @@ public class PlayerNames extends JFrame {
         name1JTextField.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (name1JTextField.getText().equals("     Input Player 1 name's:    "))
+                if (name1JTextField.getText().equals("     Player 1    "))
                     name1JTextField.setText("");
             }
 
             @Override
             public void focusLost(FocusEvent e) {
                 if (name1JTextField.getText().equals(""))
-                    name1JTextField.setText("     Input Player 1 name's:    ");
+                    name1JTextField.setText("     Player 1    ");
             }
         });
 
 
         name2JTextField.setBackground(new java.awt.Color(255, 204, 204));
         name2JTextField.setForeground(new java.awt.Color(0, 0, 0));
-        name2JTextField.setText("     Input Player 2 name's:    ");
+        name2JTextField.setText("     Player 2    ");
         name2JTextField.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                if (name2JTextField.getText().equals("     Input Player 2 name's:    "))
+                if (name2JTextField.getText().equals("     Player 2    "))
                     name2JTextField.setText("");
             }
 
             @Override
             public void focusLost(FocusEvent e) {
                 if (name2JTextField.getText().equals(""))
-                    name2JTextField.setText("     Input Player 2 name's:    ");
+                    name2JTextField.setText("     Player 2    ");
             }
         });
         saveJbutton.setBackground(new java.awt.Color(255, 102, 102));
@@ -204,9 +204,11 @@ public class PlayerNames extends JFrame {
         System.out.println(pn1);
         Parameter.player1 = pn1;
         Parameter.player2 = pn2;
-//        this.dispose();
-        checkCLose = true;
-        System.out.println(true);
+        this.dispose();
+        MenuView.getInstance();
+        MenuView.instance.playerNamesClose = 1;
+        MenuView.instance.actionGui();
+
     }
 
     /**

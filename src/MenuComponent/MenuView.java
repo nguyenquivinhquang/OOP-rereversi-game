@@ -12,15 +12,14 @@ public class MenuView extends javax.swing.JFrame {
     /**
      * Creates new form Menu
      */
-    private int stage = 0; //stage = 1 -> open PVP, stage = 2 -> open PVB
-
-    public MenuView() {
+    public static MenuView instance = null;
+    private MenuView() {
         initComponents();
         setTitle("Reversi");
         setIconImage(Toolkit.getDefaultToolkit().getImage(Parameter.logo));
         setVisible(true);
     }
-//    public PlayerNames playerNames;
+    public int playerNamesClose = 0;
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -201,21 +200,17 @@ public class MenuView extends javax.swing.JFrame {
     private void playervsplayerJButtonActionPerformed(java.awt.event.ActionEvent evt) {
         PlayerNames t = new PlayerNames();
         t.setVisible(true);
-        actionGui(t);
+
 
     }//GEN-LAST:event_playervsplayerJButtonActionPerformed
 
 
-    public void actionGui(PlayerNames playerNames) {
-        while (1 != 0) {
-            System.out.println("wait");
-            if (playerNames.checkCLose == true) {
-                this.dispose();
-                Gui.newGamePlayervsPlayer();
-            }
+    public void actionGui() {
+        if (playerNamesClose == 1) {
+            Gui.newGamePlayervsPlayer();
+            dispose();
         }
     }
-
 
 
     private void optionsJButtonActionPerformed(java.awt.event.ActionEvent evt) {
@@ -225,6 +220,9 @@ public class MenuView extends javax.swing.JFrame {
 
     private void playervspcJButtonActionPerformed(java.awt.event.ActionEvent evt) {
         Parameter.player2 = "BOT";
+        Parameter.player1 = "Player";
+        this.setVisible(false);
+        Gui.newGamePlayervsBot();
 
     }//GEN-LAST:event_guideJButtonActionPerformed
 
@@ -233,13 +231,14 @@ public class MenuView extends javax.swing.JFrame {
     }//GEN-LAST:event_guideJButtonActionPerformed
 
 
-
     public static void main(String args[]) {
-        MenuView menuView = new MenuView();
-
-
+        MenuView.getInstance();
     }
-
+    public static void getInstance() {
+        if (instance == null) {
+            instance = new MenuView();
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton guideJButton;
     private javax.swing.JEditorPane jEditorPane1;
