@@ -1,14 +1,15 @@
+package GUI;
+
 import javax.swing.*;
 import java.awt.*;
 import Audio.PlayingAudioFileTest;
 import Core.*;
-import GUI.*;
 
 public class Gui extends JFrame {
 
 
-    PlayerVsPlayer playerVsPlayer = PlayerVsPlayer.getInstance();
-    PlayervsBot playervsBot = PlayervsBot.getInstance();
+    public PlayerVsPlayer playerVsPlayer = PlayerVsPlayer.getInstance();
+    public PlayervsBot playervsBot = PlayervsBot.getInstance();
 
     PlayingAudioFileTest music;
 
@@ -27,14 +28,18 @@ public class Gui extends JFrame {
         setTitle("Reversi");
 
         music = new PlayingAudioFileTest();
-
+//        this.add(playerVsPlayer.render);
+//        playerVsPlayer.actionGame();
         setMenu();
         this.setSize(1000, 700);
         this.setVisible(true);
 }
 
     public void startPlayervsPlayer() {
+//        PlayerVsPlayer playerVsPlayer = PlayerVsPlayer.getInstance();
+
         this.add(playerVsPlayer.render);
+        repaint();
         playerVsPlayer.actionGame();
 //        playerVsPlayer.render.repaint();
     }
@@ -63,7 +68,7 @@ public class Gui extends JFrame {
         exitJMenu.addActionListener(e -> this.dispose());
         newGameAction();
 
-
+        System.out.println("setmenu");
         playMusic.addActionListener(e -> music.playMusic());
 
         stopMusic.addActionListener(e -> music.pauseMusic());
@@ -71,7 +76,10 @@ public class Gui extends JFrame {
         musicMenu.add(stopMusic);
     }
 
-
+    public static void newGame() {
+        Gui gui = new Gui();
+        gui.startPlayervsPlayer();
+    }
     public static void main(String[] args) {
         Gui gui = new Gui();
         gui.startPlayervsPlayer();
