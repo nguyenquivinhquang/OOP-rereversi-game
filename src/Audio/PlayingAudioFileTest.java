@@ -1,5 +1,7 @@
 package Audio;
 
+import GUI.Parameter;
+
 import javax.sound.sampled.*;
 import java.io.IOException;
 import java.io.File;
@@ -10,24 +12,18 @@ public class PlayingAudioFileTest {
 
 
     AudioInputStream musicInput;
-    public static String filePath = "Audio/perry.wav";
+    public static String filePath = Parameter.music;
 
     public PlayingAudioFileTest() {
         try {
             musicInput = AudioSystem.getAudioInputStream(new File(filePath).getAbsoluteFile());
-        } catch (UnsupportedAudioFileException | IOException e) {
-            e.printStackTrace();
-        }
-        try {
             music = AudioSystem.getClip();
-        } catch (LineUnavailableException e) {
-            e.printStackTrace();
-        }
-        try {
             music.open(musicInput);
-        } catch (LineUnavailableException | IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
+            System.out.println("error in Music");
         }
+
         music.loop(Clip.LOOP_CONTINUOUSLY);
 
     }
@@ -35,6 +31,7 @@ public class PlayingAudioFileTest {
     public void playMusic() {
         music.start();
         music.loop(Clip.LOOP_CONTINUOUSLY);
+
     }
 
     public void pauseMusic() {
@@ -47,7 +44,5 @@ public class PlayingAudioFileTest {
         music.setMicrosecondPosition(musicCurrentTime);
         this.playMusic();
     }
-
-
 
 }
