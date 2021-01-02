@@ -208,7 +208,8 @@ public class MenuView extends javax.swing.JFrame {
     public void actionGui() {
         if (playerNamesClose == 1) {
             Gui.newGamePlayervsPlayer();
-            dispose();
+            setVisible(false);
+
         }
     }
 
