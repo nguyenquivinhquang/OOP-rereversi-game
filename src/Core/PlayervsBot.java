@@ -1,5 +1,7 @@
 package Core;
 
+import GUI.Render;
+
 import java.util.concurrent.TimeUnit;
 
 
@@ -33,7 +35,7 @@ public class PlayervsBot extends PlayerVsPlayer {
 
     }
 
-    public PlayervsBot() {
+    protected PlayervsBot() {
         super();
     }
 

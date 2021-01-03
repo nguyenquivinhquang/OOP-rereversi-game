@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class PlayerVsPlayer extends JPanel {
+public class PlayerVsPlayer {
     ArrayList<Coordinate> stage = new ArrayList<>();
     private static PlayerVsPlayer instance = null;
     int column = 8, row = 8, step = 1;
@@ -23,8 +23,10 @@ public class PlayerVsPlayer extends JPanel {
     Coordinate score = new Coordinate();
 
     GamePlay gamePlay = GamePlay.getInstance();
-    JFrame frame = new JFrame("Reversi");
+
     public Render render;
+
+
 
     public void resetArray() {
         for (int i = 0; i <= row; i++)
@@ -77,7 +79,6 @@ public class PlayerVsPlayer extends JPanel {
         if (p1Score > p2Score)
             render.winner(1);
         else render.winner(2);
-        frame.dispose();
     }
 
     public void actionGame() {
@@ -124,7 +125,7 @@ public class PlayerVsPlayer extends JPanel {
 
     }
 
-    public PlayerVsPlayer() {
+    protected PlayerVsPlayer() {
         render = new Render(stage);
         newGame();
     }
@@ -147,11 +148,6 @@ public class PlayerVsPlayer extends JPanel {
         Timer timer = new Timer("Timer");
         timer.schedule(timerTask, 100, 1);
 
-    }
-
-    public static void main(String[] args) {
-        PlayerVsPlayer playerVsPlayer = PlayerVsPlayer.getInstance();
-        playerVsPlayer.running();
     }
 
 }
