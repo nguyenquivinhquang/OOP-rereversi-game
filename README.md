@@ -16,9 +16,7 @@ There are sixty-four identical game pieces called disks (often spelled "discs"),
 git clone https://github.com/nguyenquivinhquang/OOP-rereversi-game.git
 ```
 ## Run
-Navigate to the repository folder. Nagivate to the src folder where the OOP-rereversi-game.jar file is located.
-
-
+Navigate to the repository folder. Click on OOP-rereversi-game.jar.
 # Gameplay
 ## Player vs Player
 The basic mode in which two players can play together.
