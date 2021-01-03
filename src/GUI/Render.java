@@ -1,9 +1,10 @@
 package GUI;
 
+import Core.Coordinate;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Timer;
 
 public class Render extends JPanel {
     private int x, y, p1Score, p2Score;
@@ -62,7 +63,4 @@ public class Render extends JPanel {
         JOptionPane.showMessageDialog(null, name1 + " has no move, " + name2 + " 's turn ", " You cannot move this turn", JOptionPane.INFORMATION_MESSAGE, icon);
     }
 
-    public static void main(String[] args) {
-
-    }
 }
