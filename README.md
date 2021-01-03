@@ -6,3 +6,32 @@ There are sixty-four identical game pieces called disks (often spelled "discs"),
 * Player vs Bot mode using Minimax.
 * Background music.
 * More chessboard for user choosing.
+
+# Getting started
+## Dependencies
+* Java 1.8 (Java 8) for Windows
+* IntelliJ preferably (optional).
+## How to download
+```bash
+git clone https://github.com/nguyenquivinhquang/OOP-rereversi-game.git
+```
+## Run
+Navigate to the repository folder. Nagivate to the src folder where the OOP-rereversi-game.jar file is located.
+
+
+# Gameplay
+## Player vs Player
+The basic mode in which two players can play together.
+## Player vs Bot
+The mode that player will play with minimax Bot. It not easy to win this bot. 
+## Controls
+Clicking the stars on the board. The stars mean that you can go this move.
+
+# Accomplishments
+## Design patterns and principles
+* Singleton pattern.
+
+## Future Goal
+* Undo move
+* Effect when bot move
+* Optimizing Ram and CPU
