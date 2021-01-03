@@ -1,5 +1,7 @@
 package GUI;
 
+import Core.Coordinate;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -8,7 +10,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class RenderChess {
-    private ArrayList<Coordinate> board;
     private Coordinate position = new Coordinate();
     private static RenderChess instance;
 
