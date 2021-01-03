@@ -2,8 +2,7 @@ package GUI;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
 import MenuComponent.*;
 import Audio.PlayingAudioFileTest;
 import Core.*;
@@ -13,7 +12,7 @@ public class Gui extends JFrame {
     public PlayerVsPlayer playerVsPlayer = PlayerVsPlayer.getInstance();
     public PlayervsBot playervsBot = PlayervsBot.getInstance();
     PlayingAudioFileTest music;
-    int curplay = 0; // 1 is bot, 2 is player
+
     JMenuBar menuBar = new JMenuBar();
     JMenu gameOptionsMenu = new JMenu(" Game options");
     JMenu musicMenu = new JMenu("Music options");
@@ -23,6 +22,8 @@ public class Gui extends JFrame {
     JMenuItem playMusic = new JMenuItem("Play");
     JMenuItem stopMusic = new JMenuItem("Stop");
     JMenuItem backToMenu = new JMenuItem("Back to Menu");
+    int currentPlaying = 0; // 1 is bot, 2 is player
+
     public Gui() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setIconImage(Toolkit.getDefaultToolkit().getImage(Parameter.logo));
@@ -35,16 +36,16 @@ public class Gui extends JFrame {
         setVisible(true);
     }
 
-    public void startPlayervsPlayer() {
-        curplay = 2;
+    private void startPlayerVsPlayer() {
+        currentPlaying = 2;
         add(playerVsPlayer.render);
         playerVsPlayer.running();
         music.resumeMusic();
 
     }
 
-    public void startPlayervsBot() {
-        curplay = 1;
+    private void startPlayerVsBot() {
+        currentPlaying = 1;
         add(playervsBot.render);
         playervsBot.running();
         music.resumeMusic();
@@ -52,7 +53,7 @@ public class Gui extends JFrame {
 
     private void setNewGameJMenu() {
         newGameJMenu.addActionListener(e -> {
-            if (curplay == 2)
+            if (currentPlaying == 2)
                 playerVsPlayer.newGame();
             else playervsBot.newGame();
 
@@ -103,14 +104,17 @@ public class Gui extends JFrame {
         musicMenu.add(stopMusic);
     }
 
-    public static void newGamePlayervsPlayer() {
+    public static void newGamePlayerVsPlayer() {
         Gui gui = new Gui();
-        gui.startPlayervsPlayer();
+        gui.startPlayerVsPlayer();
     }
 
-    public static void newGamePlayervsBot() {
+    public static void newGamePlayerVsBot() {
         Gui gui = new Gui();
-        gui.startPlayervsBot();
+        gui.startPlayerVsBot();
     }
 
+    public static void main(String[] args) {
+        Gui.newGamePlayerVsBot();
+    }
 }
