@@ -207,7 +207,7 @@ public class MenuView extends javax.swing.JFrame {
 
     public void actionGui() {
         if (playerNamesClose == 1) {
-            Gui.newGamePlayervsPlayer();
+            Gui.newGamePlayerVsPlayer();
             setVisible(false);
 
         }
@@ -223,12 +223,12 @@ public class MenuView extends javax.swing.JFrame {
         Parameter.player2 = "BOT";
         Parameter.player1 = "Player";
         this.setVisible(false);
-        Gui.newGamePlayervsBot();
+        Gui.newGamePlayerVsBot();
 
     }//GEN-LAST:event_guideJButtonActionPerformed
 
     private void guideJButtonActionPerformed(java.awt.event.ActionEvent evt) {
-        Rules rule = new Rules();
+        new Rules().setVisible(true);
     }//GEN-LAST:event_guideJButtonActionPerformed
 
 
