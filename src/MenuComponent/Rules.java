@@ -1,3 +1,5 @@
+package MenuComponent;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -14,7 +16,7 @@ public class Rules extends JFrame {
         setSize(450, 850);
     }
 
-                   
+
     private void initComponents() {
 
         jPanel1 = new drawRules(this.getWidth(), this.getHeight());
@@ -62,7 +64,7 @@ public class Rules extends JFrame {
         );
 
         pack();
-    }            
+    }
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
         dispose();
@@ -70,46 +72,25 @@ public class Rules extends JFrame {
 
 
     public static void main(String args[]) {
-   
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Rules.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Rules.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Rules.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Rules.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-
-
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Rules().setVisible(true);
-            }
-        });
+        new Rules().setVisible(true);
     }
 
-                 
+
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
-           
+
 }
 
 
-class drawRules extends  JPanel {
+class drawRules extends JPanel {
     int width, height;
     private BufferedImage image;
+
     public drawRules(int width, int height) {
         this.width = width;
         this.height = height;
     }
+
     public void paintComponent(Graphics g) {
         try {
             image = ImageIO.read(new File("E:\\java\\OOP-rereversi-game\\Image\\gamerules.jpg"));
@@ -117,7 +98,7 @@ class drawRules extends  JPanel {
             System.out.println("error");
         }
         g.setColor(new java.awt.Color(255, 255, 153));
-        g.fillRect(1,1, 1000,1000);
+        g.fillRect(1, 1, 1000, 1000);
         System.out.println(width);
         g.drawImage(image, 40, 0, 350, 770, null); // see javadoc for more info on the parameters
     }
