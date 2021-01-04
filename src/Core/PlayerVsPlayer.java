@@ -27,7 +27,6 @@ public class PlayerVsPlayer {
     public Render render;
 
 
-
     public void resetArray() {
         for (int i = 0; i <= row; i++)
             for (int j = 0; j <= column; j++)
@@ -112,7 +111,6 @@ public class PlayerVsPlayer {
                 getRowColumn(e.getX(), e.getY());
             }
         });
-
     }
 
     public void newGame() {
@@ -122,7 +120,6 @@ public class PlayerVsPlayer {
         possibleMove = gamePlay.checkPosibleMove(boardStage, step);
         computeBoard();
         getXY();
-
     }
 
     protected PlayerVsPlayer() {

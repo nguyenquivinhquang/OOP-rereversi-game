@@ -8,7 +8,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-public class  RenderBoard {
+public class RenderBoard {
 
     private static RenderBoard instance = null;
 

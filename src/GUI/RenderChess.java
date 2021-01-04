@@ -35,7 +35,7 @@ public class RenderChess {
 
     }
 
-    public void paintChess(Graphics g, ArrayList<Coordinate> board) throws InterruptedException {
+    public void paintChess(Graphics g, ArrayList<Coordinate> board) {
         BufferedImage player1Image = null, player2Image = null, suggestImage = null;
         try {
             player1Image = ImageIO.read(new File(Parameter.blackChess));
